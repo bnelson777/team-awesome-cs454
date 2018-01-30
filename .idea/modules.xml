@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/team-awesome-cs454.iml" filepath="$PROJECT_DIR$/team-awesome-cs454.iml" />
-      <module fileurl="file://C:\apocrypha\home\school\2018\winter\CS454\projects\team-awesome-cs454\testprogram.iml" filepath="C:\apocrypha\home\school\2018\winter\CS454\projects\team-awesome-cs454\testprogram.iml" />
     </modules>
   </component>
 </project>
