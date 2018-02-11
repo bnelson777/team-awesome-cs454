@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.text.InputType;// added
 
 import com.TeamAwesome.ConnectFour.R;
 import com.TeamAwesome.ConnectFour.controller.GamePlayController3;
@@ -18,6 +21,9 @@ public class GamePlayActivity3 extends AppCompatActivity {
     private GamePlayController3 mGameController;
     private final GameRules mGameRules = new GameRules();
 
+
+    private int NumberOfRounds=0; //Added by Soyoung
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +34,31 @@ public class GamePlayActivity3 extends AppCompatActivity {
         mGameController = new GamePlayController3(this, boardView3, mGameRules);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
+
+        if(mGameController.getNumberOfRounds()==0) { //Added by Soyoung
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+            alert.setTitle("The number of rounds");
+            alert.setMessage("How many rounds would you like to play?");
+
+            final EditText rounds = new EditText(this);
+            rounds.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+            alert.setView(rounds);
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    String temp = rounds.getText().toString();
+                    NumberOfRounds = Integer.parseInt(temp);
+
+                    Log.d("CREATION", "soyoung test1 : " + NumberOfRounds);
+                    mGameController.setNumberOfRounds(NumberOfRounds);
+                }
+            });
+
+            alert.show();
+
+        }
     }
 
     @Override
