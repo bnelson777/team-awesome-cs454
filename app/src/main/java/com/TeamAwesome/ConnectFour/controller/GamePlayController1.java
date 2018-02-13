@@ -129,7 +129,7 @@ public class GamePlayController1 implements View.OnClickListener {
             mAiPlayer = new AiPlayer1(mBoardLogic);
             switch (mGameRules.getRule(GameRules.LEVEL)) {
                 case GameRules.Level.EASY:
-                    mAiPlayer.setDifficulty(4);
+                    mAiPlayer.setDifficulty(5);
                     break;
                 case GameRules.Level.NORMAL:
                     mAiPlayer.setDifficulty(7);
