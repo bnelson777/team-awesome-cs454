@@ -2,6 +2,7 @@ package com.TeamAwesome.ConnectFour.controller;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -23,6 +24,16 @@ import java.util.ArrayList;
 import static java.lang.Thread.sleep;
 
 public class GamePlayController2 implements View.OnClickListener {
+
+    public int getNumberOfRounds() {
+        return NumberOfRounds;
+    }
+
+    public void setNumberOfRounds(int numberOfRounds) {
+        NumberOfRounds = numberOfRounds;
+    }
+
+    private int NumberOfRounds=0; //Added by Soyoung
 
     private static final String TAG = GamePlayController2.class.getName();
     /**
@@ -191,7 +202,22 @@ public class GamePlayController2 implements View.OnClickListener {
         if (mOutcome != Outcome.NOTHING) {
             mFinished = true;
             ArrayList<ImageView> winDiscs = mBoardLogic.getWinDiscs(mBoardView.getCells());
+            if(NumberOfRounds==1){
+                mBoardView.setFinished(true);
+            }
             mBoardView.showWinStatus(mOutcome, winDiscs);
+
+            final Handler handler = new Handler(); //added by soyoung
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Do something after 5s = 5000ms
+                    if(NumberOfRounds>1) {
+                        restartGame();
+                        NumberOfRounds--;
+                    }
+                }
+            }, 2000);
 
         } else {
             mBoardView.togglePlayer(mPlayerTurn);

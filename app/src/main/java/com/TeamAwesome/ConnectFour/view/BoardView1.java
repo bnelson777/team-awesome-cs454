@@ -29,6 +29,16 @@ public class BoardView1 extends RelativeLayout {
     private GameRules mGameRules;
     private GamePlayController1 mListener;
 
+    public boolean isFinished = false; //added by soyoung
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
+    }
+
     /**
      * view holder for player information
      */
@@ -38,6 +48,7 @@ public class BoardView1 extends RelativeLayout {
         @NonNull
         public final ImageView disc;
         public final View turnIndicator;
+        public int score = 0; //added by soyoung
 
         public PlayerInformation(int player_name_id, int player_disc_id, int player_indicator_id) {
             name = (TextView) findViewById(player_name_id);
@@ -46,8 +57,8 @@ public class BoardView1 extends RelativeLayout {
         }
     }
 
-    private PlayerInformation mPlayer1;
-    private PlayerInformation mPlayer2;
+    public PlayerInformation mPlayer1; //changed it to be public
+    public PlayerInformation mPlayer2;
 
     /**
      * Array to hold all discs dropped
@@ -206,18 +217,20 @@ public class BoardView1 extends RelativeLayout {
             mPlayer2.turnIndicator.setVisibility(INVISIBLE);
             switch (outcome) {
                 case DRAW:
-                    mWinnerView.setText(mContext.getString(R.string.draw));
+                    mWinnerView.setText(mContext.getString(R.string.draw)+" THIS ROUND! SCORE "+mPlayer1.score+" : "+mPlayer2.score);
                     break;
                 case PLAYER1_WINS:
-                    mWinnerView.setText(mContext.getString(R.string.you_win));
+                    mPlayer1.score++;
+                    mWinnerView.setText(mContext.getString(R.string.you_win)+" THIS ROUND! SCORE "+mPlayer1.score+" : "+mPlayer2.score);
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(mGameRules.getRule(GameRules.DISC) == GameRules.Disc.RED ?
                                 R.drawable.win_red : R.drawable.win_yellow);
                     }
                     break;
                 case PLAYER2_WINS:
+                    mPlayer2.score++;
                     mWinnerView.setText(mGameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
-                            mContext.getString(R.string.you_lose) : mContext.getString(R.string.friend_win));
+                            mContext.getString(R.string.you_lose)+" THIS ROUND! SCORE "+mPlayer1.score+" : "+mPlayer2.score : mContext.getString(R.string.friend_win)+" /n"+mPlayer1.score+" : "+mPlayer2.score);
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(mGameRules.getRule(GameRules.DISC2) == GameRules.Disc.RED ?
                                 R.drawable.win_red : R.drawable.win_yellow);
