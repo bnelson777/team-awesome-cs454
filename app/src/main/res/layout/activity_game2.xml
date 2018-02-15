@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/gameView2"
-    tools:context="com.TeamAwesome.ConnectFour.activity.GamePlayActivity2">
+    tools:context="com.TeamAwesome.ConnectFour.activity.GamePlayActivity">
 
 </com.TeamAwesome.ConnectFour.view.BoardView2>

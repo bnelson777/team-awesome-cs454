@@ -4,19 +4,19 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.TeamAwesome.ConnectFour.BuildConfig;
-import com.TeamAwesome.ConnectFour.board.BoardLogic1;
-import com.TeamAwesome.ConnectFour.controller.GamePlayController1;
+import com.TeamAwesome.ConnectFour.board.BoardLogic;
+import com.TeamAwesome.ConnectFour.controller.GamePlayController;
 import com.TeamAwesome.ConnectFour.rules.Player;
 
-public class AiPlayer1 {
-    private static final String TAG = GamePlayController1.class.getName();
+public class AiPlayer {
+    private static final String TAG = GamePlayController.class.getName();
 
-    private final BoardLogic1 mBoardLogic;
+    private final BoardLogic mBoardLogic;
 
 
     private int mMaxDepth;
 
-    public AiPlayer1(BoardLogic1 boardLogic) {
+    public AiPlayer(BoardLogic boardLogic) {
         this.mBoardLogic = boardLogic;
     }
 

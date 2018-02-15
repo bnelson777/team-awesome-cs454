@@ -5,13 +5,13 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.TeamAwesome.ConnectFour.BuildConfig;
-import com.TeamAwesome.ConnectFour.controller.GamePlayController1;
+import com.TeamAwesome.ConnectFour.controller.GamePlayController;
 import com.TeamAwesome.ConnectFour.rules.Player;
 
 import java.util.ArrayList;
 
-public class BoardLogic1 {
-    private static final String TAG = GamePlayController1.class.getName();
+public class BoardLogic {
+    private static final String TAG = GamePlayController.class.getName();
 
     /**
      * Possible outcomes
@@ -73,7 +73,7 @@ public class BoardLogic1 {
      * @param grid reference to board grid
      * @param free reference to column height
      */
-    public BoardLogic1(@NonNull int[][] grid, int[] free) {
+    public BoardLogic(@NonNull int[][] grid, int[] free) {
         mGrid = grid;
         numRows = grid.length;
         numCols = grid[0].length;
@@ -325,8 +325,8 @@ public class BoardLogic1 {
     public void displayBoard() {
         System.out.println();
         //change
-        for (int i = 0; i <= 5; ++i) {
-            for (int j = 0; j <= 6; ++j) {
+        for (int i = 0; i < numRows; ++i) {
+            for (int j = 0; j < numCols; ++j) {
                 System.out.print(mGrid[i][j] + " ");
             }
             System.out.println();

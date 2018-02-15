@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/gameView"
-    tools:context="com.TeamAwesome.ConnectFour.activity.GamePlayActivity1">
+    android:id="@+id/gameView1"
+    tools:context="com.TeamAwesome.ConnectFour.activity.GamePlayActivity">
 
 </com.TeamAwesome.ConnectFour.view.BoardView1>
