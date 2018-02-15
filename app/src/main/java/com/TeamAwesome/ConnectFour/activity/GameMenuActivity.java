@@ -17,6 +17,8 @@ public class GameMenuActivity extends AppCompatActivity implements GameMenuContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        String p1name = intent.getStringExtra("p1Name");
         setContentView(R.layout.activity_game_menu);
         MenuView menuView = (MenuView) findViewById(R.id.menuView);
         GameMenuController gameMenuController =new GameMenuController(this, menuView);

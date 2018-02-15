@@ -337,6 +337,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Intent i = new Intent(LoginActivity.this, GameMenuActivity.class);
+                String p1Name = mEmail;
+                i.putExtra("p1Name", p1Name);
                 startActivity(i);
                 finish();
             } else {
