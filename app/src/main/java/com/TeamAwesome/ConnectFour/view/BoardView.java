@@ -113,14 +113,13 @@ public class BoardView extends RelativeLayout {
             */
         }
 
-        public void initialize(GamePlayController gamePlayController, @NonNull GameRules gameRules, BoardType boardType_in, int cols_in, int rows_in) {
+        public void initialize(GamePlayController gamePlayController, @NonNull GameRules gameRules, BoardType boardType_in, int cols_in, int rows_in, String p1name) {
             this.COLS = cols_in;
             this.ROWS = rows_in;
             this.boardType = boardType_in;
             this.mGameRules = gameRules;
             this.mListener = gamePlayController;
-
-            setPlayer1();
+            setPlayer1(p1name);
             setPlayer2();
             togglePlayer(gameRules.getRule(GameRules.FIRST_TURN));
             buildCells();
@@ -129,9 +128,9 @@ public class BoardView extends RelativeLayout {
         /**
          * initialize mPlayer1 information with Gameules
          */
-        private void setPlayer1() {
+        private void setPlayer1(String player1) {
             mPlayer1.disc.setImageResource(mGameRules.getRule(GameRules.DISC));
-            mPlayer1.name.setText(mContext.getString(R.string.you));
+            mPlayer1.name.setText(player1);
         }
 
         /**

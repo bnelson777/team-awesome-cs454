@@ -35,6 +35,8 @@ public class GameMenuActivity extends AppCompatActivity implements GameMenuContr
         final RadioButton b1 = (RadioButton) findViewById(R.id.board_one);
         final RadioButton b2 = (RadioButton) findViewById(R.id.board_two);
         final RadioButton b3 = (RadioButton) findViewById(R.id.board_three);
+        Intent intent = getIntent();
+        String p1name = intent.getStringExtra("p1Name");
         /*
          * Warning! kludgey hard-coded values ahead!
          */
@@ -44,6 +46,7 @@ public class GameMenuActivity extends AppCompatActivity implements GameMenuContr
             gamePlayIntent1.putExtra("boardType", BoardType.BoardTypeOne);
             gamePlayIntent1.putExtra("boardWidth", 7);
             gamePlayIntent1.putExtra("boardHeight", 6);
+            gamePlayIntent1.putExtra("p1name", p1name);
             startActivity(gamePlayIntent1);
         }
 
@@ -53,6 +56,7 @@ public class GameMenuActivity extends AppCompatActivity implements GameMenuContr
             gamePlayIntent2.putExtra("boardType", BoardType.BoardTypeTwo);
             gamePlayIntent2.putExtra("boardWidth", 8);
             gamePlayIntent2.putExtra("boardHeight", 7);
+            gamePlayIntent2.putExtra("p1name", p1name);
             startActivity(gamePlayIntent2);
         }
 
@@ -62,6 +66,7 @@ public class GameMenuActivity extends AppCompatActivity implements GameMenuContr
             gamePlayIntent3.putExtra("boardType", BoardType.BoardTypeThree);
             gamePlayIntent3.putExtra("boardWidth",10);
             gamePlayIntent3.putExtra("boardHeight",8);
+            gamePlayIntent3.putExtra("p1name", p1name);
             startActivity(gamePlayIntent3);
         }
     }

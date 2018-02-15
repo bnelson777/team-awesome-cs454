@@ -36,6 +36,7 @@ public class GamePlayActivity extends AppCompatActivity {
         BoardType board_type = (BoardType) myIntent.getSerializableExtra("boardType");
         int board_width = myIntent.getIntExtra("boardWidth", -1);
         int board_height = myIntent.getIntExtra("boardHeight", -1);
+        String p1name = myIntent.getStringExtra("p1name");
 
         if (board_type == BoardType.BoardTypeOne)
         {
@@ -58,7 +59,7 @@ public class GamePlayActivity extends AppCompatActivity {
          /* (board_type == BoardType.BoardTypeThree ? */ R.id.gameView3)));
 
         mGameRules.importFrom(getIntent().getExtras());
-        mGameController = new GamePlayController(this, boardView, mGameRules, board_type, board_width, board_height);
+        mGameController = new GamePlayController(this, boardView, mGameRules, board_type, board_width, board_height, p1name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
 

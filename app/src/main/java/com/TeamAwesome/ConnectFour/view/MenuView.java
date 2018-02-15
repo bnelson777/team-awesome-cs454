@@ -1,5 +1,6 @@
 package com.TeamAwesome.ConnectFour.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
@@ -57,7 +58,6 @@ public class MenuView extends RelativeLayout {
             ((RadioGroup) findViewById(R.id.play_with)).check(R.id.play_with_friend);
             findViewById(R.id.level).setVisibility(INVISIBLE);
             ((RadioButton) findViewById(R.id.first_turn_player2)).setText(getContext().getString(R.string.opponent_player));
-
         }
     }
 
