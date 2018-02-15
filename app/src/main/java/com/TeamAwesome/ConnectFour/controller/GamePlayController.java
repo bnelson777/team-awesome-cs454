@@ -85,6 +85,8 @@ public class GamePlayController implements View.OnClickListener {
 
     private final BoardView mBoardView;
 
+    private final String mP1name;
+
     /**
      * Game rules
      */
@@ -93,19 +95,20 @@ public class GamePlayController implements View.OnClickListener {
 
     private boolean mAiTurn;
 
-    public GamePlayController(Context context, BoardView boardView, @NonNull GameRules mGameRules, BoardType boardType_in, int cols, int rows) {
+    public GamePlayController(Context context, BoardView boardView, @NonNull GameRules mGameRules, BoardType boardType_in, int cols, int rows, String p1name) {
         this.COLS = cols;
         this.ROWS = rows;
         this.boardType = boardType_in;
         this.mContext = context;
         this.mGameRules = mGameRules;
         this.mBoardView = boardView;
+        this.mP1name = p1name;
         mGrid = new int[ROWS][COLS];
         mFree = new int[COLS];
         mBoardLogic = new BoardLogic(mGrid, mFree);
         initialize();
         if (mBoardView != null) {
-            mBoardView.initialize(this, mGameRules, boardType, COLS, ROWS);
+            mBoardView.initialize(this, mGameRules, boardType, COLS, ROWS, p1name);
         }
     }
 
