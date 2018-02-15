@@ -1,6 +1,6 @@
 package com.TeamAwesome.ConnectFour;
 
-import com.TeamAwesome.ConnectFour.ai.AiPlayer3;
+import com.TeamAwesome.ConnectFour.ai.AiPlayer1;
 import com.TeamAwesome.ConnectFour.board.BoardLogic3;
 
 import org.junit.Assert;
@@ -23,9 +23,9 @@ public class AiMoveTest3 {
     @Test
     public void testAiMove(){
         BoardLogic3 boardLogic3 =new BoardLogic3(grid3,free3);
-        AiPlayer3 aiPlayer3 = new AiPlayer3(boardLogic3);
-        aiPlayer3.setDifficulty(10);
+        AiPlayer1 aiPlayer1 = new AiPlayer1(boardLogic3);
+        aiPlayer1.setDifficulty(10);
         int columExpected = 5;
-        Assert.assertEquals(columExpected,aiPlayer3.getColumn());
+        Assert.assertEquals(columExpected,aiPlayer1.getColumn());
     }
 }

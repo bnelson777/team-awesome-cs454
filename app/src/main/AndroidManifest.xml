@@ -30,15 +30,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.GamePlayActivity1"
-            android:label=""
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.GamePlayActivity2"
-            android:label=""
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.GamePlayActivity3"
+            android:name=".activity.GamePlayActivity"
             android:label=""
             android:screenOrientation="portrait" />
     </application>

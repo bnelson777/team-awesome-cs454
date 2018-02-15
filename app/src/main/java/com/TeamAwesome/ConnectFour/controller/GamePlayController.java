@@ -10,20 +10,21 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.TeamAwesome.ConnectFour.BuildConfig;
-import com.TeamAwesome.ConnectFour.activity.GamePlayActivity3;
-import com.TeamAwesome.ConnectFour.ai.AiPlayer3;
-import com.TeamAwesome.ConnectFour.board.BoardLogic3;
-import com.TeamAwesome.ConnectFour.board.BoardLogic3.Outcome;
+import com.TeamAwesome.ConnectFour.activity.GamePlayActivity;
+import com.TeamAwesome.ConnectFour.ai.AiPlayer;
+import com.TeamAwesome.ConnectFour.board.BoardLogic;
+import com.TeamAwesome.ConnectFour.board.BoardLogic.Outcome;
 import com.TeamAwesome.ConnectFour.rules.GameRules;
 import com.TeamAwesome.ConnectFour.rules.Player;
+import com.TeamAwesome.ConnectFour.utils.BoardType;
 import com.TeamAwesome.ConnectFour.utils.Constants;
-import com.TeamAwesome.ConnectFour.view.BoardView3;
+import com.TeamAwesome.ConnectFour.view.BoardView;
 
 import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 
-public class GamePlayController3 implements View.OnClickListener {
+public class GamePlayController implements View.OnClickListener {
 
     public int getNumberOfRounds() {
         return NumberOfRounds;
@@ -35,39 +36,34 @@ public class GamePlayController3 implements View.OnClickListener {
 
     private int NumberOfRounds=0; //Added by Soyoung
 
-    private static final String TAG = GamePlayController3.class.getName();
+    private static final String TAG = GamePlayController.class.getName();
     /**
-     * number of columns
+     * number of columns and rows
      */
-    //change
-    public static final int COLS = 10;
-
-    /**
-     * number of rows
-     */
-    //change
-    public static final int ROWS = 8;
+    public int COLS;
+    public int ROWS;
+    private BoardType boardType;
 
     /**
      * mGrid, contains 0 for empty cell or player ID
      */
-    private final int[][] mGrid = new int[ROWS][COLS];
+    private int[][] mGrid;
 
     /**
      * mFree cells in every column
      */
-    private final int[] mFree = new int[COLS];
+    private int[] mFree;
 
     /**
      * board mBoardLogic (winning check)
      */
-    private final BoardLogic3 mBoardLogic = new BoardLogic3(mGrid, mFree);
+    private BoardLogic mBoardLogic;
 
     /**
      * Instance of Ai player
      */
     @Nullable
-    private AiPlayer3 mAiPlayer;
+    private AiPlayer mAiPlayer;
 
     /**
      * current status
@@ -87,7 +83,7 @@ public class GamePlayController3 implements View.OnClickListener {
 
     private final Context mContext;
 
-    private final BoardView3 mBoardView;
+    private final BoardView mBoardView;
 
     /**
      * Game rules
@@ -97,13 +93,19 @@ public class GamePlayController3 implements View.OnClickListener {
 
     private boolean mAiTurn;
 
-    public GamePlayController3(Context context, BoardView3 boardView, @NonNull GameRules mGameRules) {
+    public GamePlayController(Context context, BoardView boardView, @NonNull GameRules mGameRules, BoardType boardType_in, int cols, int rows) {
+        this.COLS = cols;
+        this.ROWS = rows;
+        this.boardType = boardType_in;
         this.mContext = context;
         this.mGameRules = mGameRules;
         this.mBoardView = boardView;
+        mGrid = new int[ROWS][COLS];
+        mFree = new int[COLS];
+        mBoardLogic = new BoardLogic(mGrid, mFree);
         initialize();
         if (mBoardView != null) {
-            mBoardView.initialize(this, mGameRules);
+            mBoardView.initialize(this, mGameRules, boardType, COLS, ROWS);
         }
     }
 
@@ -112,7 +114,6 @@ public class GamePlayController3 implements View.OnClickListener {
      */
     private void initialize() {
         mPlayerTurn = mGameRules.getRule(GameRules.FIRST_TURN);
-
         // unfinished the game
         mFinished = false;
         mOutcome = Outcome.NOTHING;
@@ -126,7 +127,7 @@ public class GamePlayController3 implements View.OnClickListener {
 
         // create AI if needed
         if (mGameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI) {
-            mAiPlayer = new AiPlayer3(mBoardLogic);
+            mAiPlayer = new AiPlayer(mBoardLogic);
             switch (mGameRules.getRule(GameRules.LEVEL)) {
                 case GameRules.Level.EASY:
                     mAiPlayer.setDifficulty(5);
@@ -224,8 +225,9 @@ public class GamePlayController3 implements View.OnClickListener {
         }
     }
 
-    public void exitGame() {
-        ((GamePlayActivity3) mContext).finish();
+    public void exitGame()
+    {
+            ((GamePlayActivity) mContext).finish();
     }
 
     /**

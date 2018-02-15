@@ -1,6 +1,7 @@
 package com.TeamAwesome.ConnectFour.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -12,26 +13,52 @@ import android.widget.EditText;
 import android.text.InputType;// added
 
 import com.TeamAwesome.ConnectFour.R;
-import com.TeamAwesome.ConnectFour.controller.GamePlayController2;
+import com.TeamAwesome.ConnectFour.controller.GamePlayController;
 import com.TeamAwesome.ConnectFour.rules.GameRules;
+import com.TeamAwesome.ConnectFour.view.BoardView;
+import com.TeamAwesome.ConnectFour.view.BoardView1;
 import com.TeamAwesome.ConnectFour.view.BoardView2;
+import com.TeamAwesome.ConnectFour.view.BoardView3;
+import com.TeamAwesome.ConnectFour.utils.BoardType;
 
-public class GamePlayActivity2 extends AppCompatActivity {
+public class GamePlayActivity extends AppCompatActivity {
 
-    private GamePlayController2 mGameController;
+    private GamePlayController mGameController;
     private final GameRules mGameRules = new GameRules();
-
 
     private int NumberOfRounds=0; //Added by Soyoung
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game2);
 
-        BoardView2 boardView2 = (BoardView2) findViewById(R.id.gameView2);
+        Intent myIntent = getIntent();
+        BoardType board_type = (BoardType) myIntent.getSerializableExtra("boardType");
+        int board_width = myIntent.getIntExtra("boardWidth", -1);
+        int board_height = myIntent.getIntExtra("boardHeight", -1);
+
+        if (board_type == BoardType.BoardTypeOne)
+        {
+            setContentView(R.layout.activity_game1);
+        }
+        if (board_type == BoardType.BoardTypeTwo)
+        {
+            setContentView(R.layout.activity_game2);
+        }
+        if (board_type == BoardType.BoardTypeThree)
+        {
+            setContentView(R.layout.activity_game3);
+        }
+
+        // Select R.id.gameView by value of board_type
+        //BAD! Assuming BoardType3
+        BoardView boardView = (BoardView) findViewById (
+            (board_type == BoardType.BoardTypeOne ? R.id.gameView1 :
+            (board_type == BoardType.BoardTypeTwo ? R.id.gameView2 :
+         /* (board_type == BoardType.BoardTypeThree ? */ R.id.gameView3)));
+
         mGameRules.importFrom(getIntent().getExtras());
-        mGameController = new GamePlayController2(this, boardView2, mGameRules);
+        mGameController = new GamePlayController(this, boardView, mGameRules, board_type, board_width, board_height);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
 

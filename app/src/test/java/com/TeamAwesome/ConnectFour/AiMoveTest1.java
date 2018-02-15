@@ -1,7 +1,7 @@
 package com.TeamAwesome.ConnectFour;
 
-import com.TeamAwesome.ConnectFour.ai.AiPlayer1;
-import com.TeamAwesome.ConnectFour.board.BoardLogic1;
+import com.TeamAwesome.ConnectFour.ai.AiPlayer;
+import com.TeamAwesome.ConnectFour.board.BoardLogic;
 
 import org.junit.Assert;
 import org.junit.Test;
