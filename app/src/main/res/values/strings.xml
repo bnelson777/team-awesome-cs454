@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Connect4</string>
+    <string-array name="player_colors">
+        <item>Black</item>
+        <item>White</item>
+    </string-array>
+
+    <string-array name="player_types">
+        <item>Human</item>
+        <item>Robot overlord</item>
+        <item>Network</item>
+    </string-array>
+
+    <string-array name="player_difficulties">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Grande</item>
+    </string-array>
+
+    <string-array name="board_sizes">
+        <item>Little</item>
+        <item>Middle</item>
+        <item>Bigly</item>
+    </string-array>
+</resources>
