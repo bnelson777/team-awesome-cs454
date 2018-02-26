@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context="com.example.jorda.connect4.MenuActivity">
+    tools:context="com.example.jorda.connect4.com.TeamAwesome.ConnectFour.view.MenuActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/testidn1"
