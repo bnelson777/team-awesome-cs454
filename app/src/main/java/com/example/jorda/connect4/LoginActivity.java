@@ -15,16 +15,18 @@ public class LoginActivity extends AppCompatActivity {
     private TextView Info;
     private Button Login;
     private int counter = 5;
+    private TextView userRegistration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Name = findViewById(R.id.etName);
+        Name = findViewById(R.id.etEmail);
         Password = findViewById(R.id.etPassword);
         Info = findViewById(R.id.tvinfo);
         Login = findViewById(R.id.btnLogin);
+        userRegistration = findViewById(R.id.tvRegister);
 
         Info.setText("No of attempts remaining: 5");
 
@@ -32,6 +34,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validate(Name.getText().toString(), Password.getText().toString());
+            }
+        });
+
+        userRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });
 
