@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "971007215897",
+    "firebase_url": "https://connect4-48ec1.firebaseio.com",
+    "project_id": "connect4-48ec1",
+    "storage_bucket": "connect4-48ec1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971007215897:android:c49da85d6fb9572a",
+        "android_client_info": {
+          "package_name": "com.example.jorda.connect4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971007215897-q455rj1eirivdj3kkp7gketpuas9j3ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQwG6pb56HkzuwI9h4TM4CrVm66YK7Ip4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
