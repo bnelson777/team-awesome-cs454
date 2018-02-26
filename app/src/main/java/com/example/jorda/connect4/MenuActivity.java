@@ -1,4 +1,4 @@
-package com.TeamAwesome.ConnectFour.view;
+package com.example.jorda.connect4;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
-import com.example.jorda.connect4.R;
 
 public class MenuActivity extends AppCompatActivity {
 
