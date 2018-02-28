@@ -1,12 +1,14 @@
 //package com.TeamAwesome.ConnectFour.view;
 package com.example.jorda.connect4;
 import android.widget.Switch;
+import java.io.Serializable;
 
 /**
  * Created by soyoungkim on 2018. 2. 25..
  */
 
-public class MenuController {
+@SuppressWarnings("serial")
+public class MenuController implements Serializable{
     private String player1_color; //if the color is black, it goes first
     private String player2_color;
     private String player1;
