@@ -16,6 +16,12 @@ import android.content.Intent;
  */
 
 public class GamePlayActivity extends AppCompatActivity {
+    private int mColumns;
+    private int mRows;
+    private GamePlayController mController;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,11 @@ public class GamePlayActivity extends AppCompatActivity {
 
         //Test the chosen board size
         Toast.makeText(GamePlayActivity.this,"Test - Board size : "+menuController.getBoard_size(),Toast.LENGTH_SHORT).show();
+
+    }
+
+    public int doMove(int column)
+    {
 
     }
 }
