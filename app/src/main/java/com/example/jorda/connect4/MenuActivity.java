@@ -1,4 +1,5 @@
-package com.TeamAwesome.ConnectFour.view;
+package com.example.jorda.connect4;
+//package com.TeamAwesome.ConnectFour.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

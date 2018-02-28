@@ -1,5 +1,5 @@
-package com.TeamAwesome.ConnectFour.view;
-
+//package com.TeamAwesome.ConnectFour.view;
+package com.example.jorda.connect4;
 import android.widget.Switch;
 
 /**
