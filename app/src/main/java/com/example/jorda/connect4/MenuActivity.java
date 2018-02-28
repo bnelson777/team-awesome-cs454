@@ -16,6 +16,8 @@ import com.example.jorda.connect4.R;
 
 public class MenuActivity extends AppCompatActivity {
 
+    final MenuController menuController = new MenuController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +78,6 @@ public class MenuActivity extends AppCompatActivity {
         ll.addView(t);
         */
 
-        final MenuController menuController = new MenuController();
 
         Player1_color.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -175,6 +176,7 @@ public class MenuActivity extends AppCompatActivity {
     public void beginGame(View view)
     {
         Intent intent = new Intent(this, GamePlayActivity.class);
+        intent.putExtra("MenuController", menuController);
         startActivity(intent);
     }
 }
