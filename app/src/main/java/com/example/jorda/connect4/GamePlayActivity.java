@@ -25,7 +25,7 @@ public class GamePlayActivity extends AppCompatActivity {
         MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
 
         //Test the chosen board size
-        Toast.makeText(GamePlayActivity.this,"Test : "+menuController.getPlayer2_color(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(GamePlayActivity.this,"Test : "+menuController.getPlayer2_color(),Toast.LENGTH_SHORT).show();
 
     }
 }

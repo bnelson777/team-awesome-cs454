@@ -110,7 +110,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 menuController.setPlayer1(player1.getItemAtPosition(position).toString());
                 //Toast.makeText(MenuActivity.this,"Test - Selected item : "+player1.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
-                if(menuController.getPlayer1_color().equals(menuController.getPlayer2_color())){
+                /*if(menuController.getPlayer1_color().equals(menuController.getPlayer2_color())){
                     if(menuController.getPlayer1_color().equals("Black")){
                         int spinnerPosition = adapter2.getPosition("White");
                         Player2_color.setSelection(spinnerPosition);
@@ -119,7 +119,7 @@ public class MenuActivity extends AppCompatActivity {
                         int spinnerPosition = adapter2.getPosition("Black");
                         Player2_color.setSelection(spinnerPosition);
                     }
-                }
+                }*/
             }
 
             @Override
@@ -133,7 +133,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 menuController.setPlayer2(player2.getItemAtPosition(position).toString());
                 //Toast.makeText(MenuActivity.this,"Test - Selected item : "+player2.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
-                if(menuController.getPlayer2_color().equals(menuController.getPlayer1_color())){
+                /*if(menuController.getPlayer2_color().equals(menuController.getPlayer1_color())){
                     if(menuController.getPlayer1_color().equals("Black")){
                         int spinnerPosition = adapter2.getPosition("White");
                         Player2_color.setSelection(spinnerPosition);
@@ -141,7 +141,7 @@ public class MenuActivity extends AppCompatActivity {
                         int spinnerPosition = adapter2.getPosition("Black");
                         Player2_color.setSelection(spinnerPosition);
                     }
-                }
+                }*/
             }
 
             @Override
