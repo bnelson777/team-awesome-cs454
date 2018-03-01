@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fbf7f6aa"
+    tools:context="com.example.jorda.connect4.com.TeamAwesome.ConnectFour.view.MenuActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/testidn1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.497"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/testid0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/testid1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/testid2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="46dp"
+                    android:layout_margin="10dp"
+                    android:background="#61bfad"
+                    android:gravity="center"
+                    android:text="Player 1"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu" />
+
+                <Spinner
+                    android:id="@+id/color_selector_player_1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:soundEffectsEnabled="false" />
+
+                <Spinner
+                    android:id="@+id/type_selector_player_1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/testid4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="46dp"
+                    android:layout_margin="10dp"
+                    android:background="#ff8b8b"
+                    android:gravity="center"
+                    android:text="Player 1 Difficulty"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu" />
+
+                <Spinner
+                    android:id="@+id/difficulty_selector_player_1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:saveEnabled="false" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/testid5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/testid7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="46dp"
+                    android:layout_margin="10dp"
+                    android:background="#61bfad"
+                    android:gravity="center"
+                    android:text="Player 2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+                <Spinner
+                    android:id="@+id/color_selector_player_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/type_selector_player_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/testid8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="46dp"
+                    android:layout_margin="10dp"
+                    android:background="#ff8b8b"
+                    android:gravity="center"
+                    android:text="Player 2 Difficulty"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu" />
+
+                <Spinner
+                    android:id="@+id/difficulty_selector_player_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/board_size_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/testid10"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="#b7e3e4"
+            android:gravity="center"
+            android:text="Rounds"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="20dp"
+            android:background="#005397"
+            android:onClick="beginGame"
+            android:text="Play !"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
