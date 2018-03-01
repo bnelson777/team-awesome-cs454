@@ -40,7 +40,7 @@ public class GamePlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gameplay);
 
         //Test the chosen board size
-        Toast.makeText(GamePlayActivity.this,"Test - Board size : "+menuController.getBoard_size(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(GamePlayActivity.this,"Test : "+menuController.getPlayer2_color(),Toast.LENGTH_SHORT).show();
 
         /******************************
          * Initialize game logic stuff

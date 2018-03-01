@@ -28,7 +28,7 @@ public class MenuActivity extends AppCompatActivity {
 
         final Spinner Player1_color = (Spinner) findViewById(R.id.color_selector_player_1);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.player_colors, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         Player1_color.setAdapter(adapter);
 
         final Spinner Player2_color = (Spinner) findViewById(R.id.color_selector_player_2);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+        final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.player_colors, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Player2_color.setAdapter(adapter2);
@@ -103,6 +103,16 @@ public class MenuActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 menuController.setPlayer1(player1.getItemAtPosition(position).toString());
                 //Toast.makeText(MenuActivity.this,"Test - Selected item : "+player1.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
+                /*if(menuController.getPlayer1_color().equals(menuController.getPlayer2_color())){
+                    if(menuController.getPlayer1_color().equals("Black")){
+                        int spinnerPosition = adapter2.getPosition("White");
+                        Player2_color.setSelection(spinnerPosition);
+                        Toast.makeText(MenuActivity.this,"Test - Selected item : "+player1.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
+                    }else if(menuController.getPlayer1_color().equals("White")){
+                        int spinnerPosition = adapter2.getPosition("Black");
+                        Player2_color.setSelection(spinnerPosition);
+                    }
+                }*/
             }
 
             @Override
@@ -116,6 +126,15 @@ public class MenuActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 menuController.setPlayer2(player2.getItemAtPosition(position).toString());
                 //Toast.makeText(MenuActivity.this,"Test - Selected item : "+player2.getItemAtPosition(position),Toast.LENGTH_SHORT).show();
+                /*if(menuController.getPlayer2_color().equals(menuController.getPlayer1_color())){
+                    if(menuController.getPlayer1_color().equals("Black")){
+                        int spinnerPosition = adapter2.getPosition("White");
+                        Player2_color.setSelection(spinnerPosition);
+                    }else if(menuController.getPlayer1_color().equals("White")){
+                        int spinnerPosition = adapter2.getPosition("Black");
+                        Player2_color.setSelection(spinnerPosition);
+                    }
+                }*/
             }
 
             @Override
@@ -162,6 +181,8 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }
