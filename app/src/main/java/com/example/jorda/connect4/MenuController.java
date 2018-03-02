@@ -97,7 +97,8 @@ public class MenuController implements Serializable{
     //Sets P1name based on login info. Checks if logged in first and if valid email address,
     //then uses portion before the "@" to get the user name
 
-    public void setPlayer1() {
+    public void setPlayer1(String player1) {
+        this.player1 = player1;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String email = user.getEmail();
