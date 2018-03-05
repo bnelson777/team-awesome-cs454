@@ -64,9 +64,15 @@ public class GamePlayView extends RelativeLayout {
 
     private void init(Context context) {
         this.mContext = context;
-        inflate(context, R.layout.game_board1, this);
+        if (false) {
 
-        mBoardView = findViewById(R.id.game_board1 );
+            inflate(context, R.layout.game_board1, this);
+            mBoardView = findViewById(R.id.game_board1);
+        } else {
+            inflate(context, R.layout.gameplay, this);
+            mBoardView = findViewById(R.id.gameplay );
+        }
+
         mWinnerView = (TextView) findViewById(R.id.winner_text);
 
         mPlayer1 = new PlayerInformation(R.id.player1_name, R.id.player1_disc, R.id.player1_indicator);

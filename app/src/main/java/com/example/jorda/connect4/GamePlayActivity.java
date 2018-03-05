@@ -39,7 +39,7 @@ public class GamePlayActivity extends AppCompatActivity {
         Intent intent = getIntent();
         MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
 
-        setContentView(R.layout.activity_gameplay);
+        setContentView(R.layout.gameplay);
         GamePlayView gamePlayView = (GamePlayView) findViewById(R.id.gameView1);
 
         //Test the chosen board size
