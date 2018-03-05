@@ -2,6 +2,7 @@ package com.example.jorda.connect4;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,10 +20,14 @@ public class GamePlayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameplay);
+
+        Log.wtf("u wot m8?", "GamePlayActivity onCreate");
+        setContentView(R.layout.activity_game1);
 
         Intent intent = getIntent();
         MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
+
+        GamePlayView gamePlayView = (GamePlayView) findViewById(R.id.gameView1);
 
         //Test the chosen board size
         //Toast.makeText(GamePlayActivity.this,"Test : "+menuController.getPlayer2_color(),Toast.LENGTH_SHORT).show();
