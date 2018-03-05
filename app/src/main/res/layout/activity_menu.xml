@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fbf7f6aa"
-    tools:context="com.example.jorda.connect4.com.TeamAwesome.ConnectFour.view.MenuActivity">
+    tools:context="com.example.jorda.connect4.MenuActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/testidn1"
@@ -138,6 +138,13 @@
             android:gravity="center"
             android:text="Rounds"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu" />
+
+        <EditText
+            android:id="@+id/round_count_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/rounds_hint"
+            android:inputType="phone" />
 
         <Button
             android:layout_width="match_parent"

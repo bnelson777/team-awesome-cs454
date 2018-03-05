@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<com.example.jorda.connect4.GamePlayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey">
+    android:id="@+id/gameView"
+    tools:context="com.example.jorda.connect4.GamePlayActivity">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:clipChildren="false"
+    android:id="@+id/gameViewRelative">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/game_board_front"
+        android:id="@+id/game_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="16dp"
@@ -15,7 +25,344 @@
         android:clipChildren="false"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:background="@color/red">
-    </LinearLayout>
+        android:background="@color/grey">
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:clipChildren="false">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:clipChildren="false">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:clipChildren="false">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:clipChildren="false">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:clipChildren="false">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:clipChildren="false">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gridblank" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+</com.example.jorda.connect4.GamePlayView>

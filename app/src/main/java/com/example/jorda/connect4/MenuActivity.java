@@ -4,6 +4,7 @@ package com.example.jorda.connect4;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -22,6 +23,8 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        Log.wtf("MenuActivity","onCreate beginning");
 
         final Spinner Player1_color = (Spinner) findViewById(R.id.color_selector_player_1);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -68,16 +71,6 @@ public class MenuActivity extends AppCompatActivity {
                 R.array.board_sizes, android.R.layout.simple_spinner_item);
         adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Board_size.setAdapter(adapter7);
-
-        /*
-        LinearLayout ll = (LinearLayout) findViewById(R.id.testid);
-        TextView t = new TextView(this);
-        t.setText("goodbye");
-        t.setId(5);
-        t.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        ll.addView(t);
-        */
-
 
         Player1_color.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -196,6 +189,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void beginGame(View view)
     {
+        Log.wtf("MenuActivity", "beginning Game");
         Intent intent = new Intent(this, GamePlayActivity.class);
         intent.putExtra("MenuController", menuController);
         startActivity(intent);

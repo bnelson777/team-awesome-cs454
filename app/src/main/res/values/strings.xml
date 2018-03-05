@@ -14,12 +14,14 @@
     <string-array name="player_difficulties">
         <item>Easy</item>
         <item>Medium</item>
-        <item>Grande</item>
+        <item>Hard</item>
     </string-array>
 
     <string-array name="board_sizes">
-        <item>Little</item>
-        <item>Middle</item>
-        <item>Bigly</item>
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
     </string-array>
+
+    <string name="rounds_hint">How many rounds?</string>
 </resources>
