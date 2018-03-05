@@ -45,7 +45,6 @@ public class GamePlayActivity extends AppCompatActivity {
         //Test the chosen board size
         //Toast.makeText(GamePlayActivity.this,"Test : "+menuController.getPlayer2_color(),Toast.LENGTH_SHORT).show();
 
-
         mColumns = menuController.getBoard_column();
         mRows = menuController.getBoard_row();
         mTops = new int[mColumns];
