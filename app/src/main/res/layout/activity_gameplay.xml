@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<com.example.jorda.connect4.GamePlayView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey">
+    android:id="@+id/gameView1"
+    tools:context="com.example.jorda.connect4.GamePlayActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/game_board_front"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:clipChildren="false"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        android:background="@color/red">
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</com.example.jorda.connect4.GamePlayView>

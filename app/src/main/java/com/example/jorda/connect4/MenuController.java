@@ -30,14 +30,14 @@ public class MenuController implements Serializable{
 
 
     public void setBoard_rows_columns(){
-        if(Board_size.equals("Little")) {
+        if(Board_size.equals("Small")) {
             this.Board_row = 6;
             this.Board_column = 7;
 
-        }else if(Board_size.equals("Middle")) {
+        }else if(Board_size.equals("Medium")) {
             this.Board_row = 7;
             this.Board_column = 8;
-        }else if(Board_size.equals("Bigly")){
+        }else if(Board_size.equals("Large")){
             this.Board_row = 8;
             this.Board_column = 10;
         }else{
