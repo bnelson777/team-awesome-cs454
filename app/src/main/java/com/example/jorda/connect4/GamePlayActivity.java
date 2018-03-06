@@ -69,5 +69,4 @@ public class GamePlayActivity extends AppCompatActivity {
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
         }
-
 }
