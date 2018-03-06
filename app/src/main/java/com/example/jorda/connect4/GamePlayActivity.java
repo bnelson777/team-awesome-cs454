@@ -62,7 +62,7 @@ public class GamePlayActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             int board_width = 7;
             int board_height = 6;
-            setContentView(R.layout.activity_game1);
+            setContentView(R.layout.activity_gameplay);
             GamePlayView boardView = (GamePlayView) findViewById ( R.id.gameView1 );
             mController = new GamePlayController(this, boardView, board_width, board_height);
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);

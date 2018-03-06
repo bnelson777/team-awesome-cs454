@@ -66,8 +66,8 @@ public class GamePlayView extends RelativeLayout {
         this.mContext = context;
         if (false) {
 
-            inflate(context, R.layout.game_board1, this);
-            mBoardView = findViewById(R.id.game_board1);
+            inflate(context, R.layout.gameplay, this);
+            mBoardView = findViewById(R.id.gameplay);
         } else {
             inflate(context, R.layout.gameplay, this);
             mBoardView = findViewById(R.id.gameplay );
