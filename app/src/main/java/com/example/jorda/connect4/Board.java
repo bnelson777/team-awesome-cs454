@@ -15,6 +15,9 @@ public class Board {
     int heuristicScore;
     boolean maxWon;
     boolean minWon;
+    boolean boardFull;
+    private static final int first_player = 1;
+    private static final int second_player = -1;
 
     public Board(int width, int height) {
         columns = width;
@@ -33,6 +36,7 @@ public class Board {
         this.minWon = in.minWon;
         this.maxWon = in.maxWon;
         this.heuristicScore = in.heuristicScore;
+        this.boardFull = in.boardFull;
 
         this.columns = in.columns;
         this.rows = in.rows;
@@ -42,19 +46,23 @@ public class Board {
             this.grid[i] = in.grid[i].clone();
     }
 
-    public Board simulateMove(int column, int piece)
+    public Board simulateMove(int column, boolean piece)
     {
         Board b = new Board(this);
         b.makeMove(column,piece);
         return b;
     }
 
-    public int makeMove(int column, int piece)
+    public int makeMove(int column, boolean piece)
     {
-        if (column < 0 || column >= columns || tops[column] == rows)
+        if (column < 0 || column >= columns || tops[column] == rows || boardFull)
             return -1;
-        grid[column][tops[column]] = piece;
+        grid[column][tops[column]] = (piece?first_player:second_player);
         tops[column]++;
+
+        boardFull = true;
+        for (int i=0;i<tops.length;i++)
+            boardFull &= (tops[i] == rows);
 
         // adjust heuristic score (max potential 4-in-rows
         // minus potential min 4-in-rows)
@@ -66,22 +74,23 @@ public class Board {
                     int c = column;
                     for (int i = 0; i < 4; i++)
                         if (r < rows && r >= 0 && c < columns && c >= 0)
-                            if (piece != grid[c+i*colDir][r+i*colDir]) {
+                            if ((piece?first_player:second_player) != grid[c+i*colDir][r+i*colDir]) {
                                 tWon = false;
                                 heuristicScore -= (4 - i);
                                 break;
                             }
 
                     if (tWon == true) {
-                        if (piece == 1)
+                        if (piece) {
                             maxWon = true;
-                        if (piece == -1)
+                            heuristicScore = columns*rows;
+                        } else {
                             minWon = true;
+                            heuristicScore = -1*columns*rows;
+                        }
                     }
                 }
 
-        if (piece == -1) return -1*columns*rows;
-        if (piece == 1)  return columns*rows;
         return heuristicScore;
     }
 
@@ -96,7 +105,7 @@ public class Board {
         if (maximizingPlayer) {
             int v = -1 * rows * columns; // effectively infinity, if our score is # of moves to win
             for (int i = 0; i < columns; i++) {
-                v = max(v, alphabeta(node.simulateMove(i, (maximizingPlayer ? 1 : -1)), depth - 1, alpha, beta, false));
+                v = max(v, alphabeta(node.simulateMove(i, maximizingPlayer ), depth - 1, alpha, beta, false));
                 alpha = max(alpha, v);
                 if (beta <= alpha)
                     break;
@@ -107,7 +116,7 @@ public class Board {
         {
             int v = rows * columns;
             for (int i=0; i<columns; i++) {
-                v = min(v, alphabeta(node.simulateMove(i, (maximizingPlayer ? 1 : -1)), depth - 1, alpha, beta, true));
+                v = min(v, alphabeta(node.simulateMove(i, maximizingPlayer), depth - 1, alpha, beta, true));
                 beta = min(beta, v);
                 if (beta <= alpha)
                     break;
