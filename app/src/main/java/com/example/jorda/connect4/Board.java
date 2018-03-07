@@ -107,7 +107,7 @@ public class Board {
         {
             int v = rows * columns;
             for (int i=0; i<columns; i++) {
-                v = min(v, alphabeta(node.simulateMove(i, (maximizingPlayer ? 1 : -1)), depth - 1, alpha, beta, true))
+                v = min(v, alphabeta(node.simulateMove(i, (maximizingPlayer ? 1 : -1)), depth - 1, alpha, beta, true));
                 beta = min(beta, v);
                 if (beta <= alpha)
                     break;
