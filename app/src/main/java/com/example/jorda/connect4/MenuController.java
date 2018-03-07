@@ -1,6 +1,8 @@
 //package com.TeamAwesome.ConnectFour.view;
 package com.example.jorda.connect4;
-import android.widget.Switch;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.Serializable;
 
 /**
@@ -22,18 +24,20 @@ public class MenuController implements Serializable{
     private int Board_row;
     private int Board_column;
 
+
     public MenuController() {
     }
 
+
     public void setBoard_rows_columns(){
-        if(Board_size.equals("Little")) {
+        if(Board_size.equals("Small")) {
             this.Board_row = 6;
             this.Board_column = 7;
 
-        }else if(Board_size.equals("Middle")) {
+        }else if(Board_size.equals("Medium")) {
             this.Board_row = 7;
             this.Board_column = 8;
-        }else if(Board_size.equals("Bigly")){
+        }else if(Board_size.equals("Large")){
             this.Board_row = 8;
             this.Board_column = 10;
         }else{
@@ -53,6 +57,7 @@ public class MenuController implements Serializable{
         }
     }
 
+
     public String getFirst_player() {
         return first_player;
     }
@@ -68,6 +73,7 @@ public class MenuController implements Serializable{
     public String getPlayer1_color() {
         return player1_color;
     }
+
 
     public void setPlayer1_color(String player1_color) {
         this.player1_color = player1_color;
@@ -87,8 +93,24 @@ public class MenuController implements Serializable{
         return player1;
     }
 
+
+    //Sets P1name based on login info. Checks if logged in first and if valid email address,
+    //then uses portion before the "@" to get the user name
+
     public void setPlayer1(String player1) {
         this.player1 = player1;
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String email = user.getEmail();
+            if (email.contains("@"))
+                first_player = email.split("@")[0];
+            else
+                first_player = "Player 1";
+        } else {
+            first_player = "Player 1";
+        }
+
+
     }
 
     public String getPlayer2() {
