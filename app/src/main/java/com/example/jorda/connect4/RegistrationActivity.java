@@ -1,12 +1,12 @@
 package com.example.jorda.connect4;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -21,7 +23,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
-
+    private FirebaseDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +32,28 @@ public class RegistrationActivity extends AppCompatActivity {
         setupUIviews();
 
         firebaseAuth = FirebaseAuth.getInstance();
-
+        mDatabase = FirebaseDatabase.getInstance();
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validate()) {
                     //Register to firebase
-                    String user_email = userEmail.getText().toString().trim();
+                    final String user_email = userEmail.getText().toString().trim();
                     String user_password = userPassword.getText().toString().trim();
+                    final String user_name = userName.getText().toString().trim();
 
                     firebaseAuth.createUserWithEmailAndPassword(user_email,user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
+                                String uid = firebaseAuth.getCurrentUser().getUid();
+                                DatabaseReference ref = mDatabase.getReference().child("users");
+                                ref.setValue(uid);
+                                ref = ref.child(uid);
+                                User user = new User(user_name, user_email);
+                                ref.setValue(user);
                                 Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
                             }else {
@@ -57,6 +66,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
 
             }
+
         });
 
         userLogin.setOnClickListener(new View.OnClickListener() {
@@ -91,4 +101,5 @@ public class RegistrationActivity extends AppCompatActivity {
         return result;
 
     }
+
 }
