@@ -23,6 +23,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mDatabase;
 
     @Override
@@ -32,6 +33,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setupUIviews();
 
         firebaseAuth = FirebaseAuth.getInstance();
+
         mDatabase = FirebaseDatabase.getInstance();
 
         regButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 DatabaseReference usersRef = mDatabase.getReference().child("users/" + uid);
                                 usersRef.child("name").setValue(user_name);
                                 usersRef.child("email").setValue(user_email);
+                                usersRef.child("highscore").setValue("0");
                                 Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
                             }else {
