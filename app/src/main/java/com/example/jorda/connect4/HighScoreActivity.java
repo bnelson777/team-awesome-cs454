@@ -1,73 +1,69 @@
 package com.example.jorda.connect4;
 
-import android.os.Bundle;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
+import android.os.Bundle;
+import android.widget.TextView;
 
 public class HighScoreActivity extends AppCompatActivity {
 
-    ListView listView ;
+    TextView tv_score;
+
+    int lastScore;
+    int best1, best2, best3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
-        // Get ListView object from xml
-        listView = (ListView) findViewById(R.id.databaseListView);
+        tv_score = findViewById(R.id.tv_score);
 
-        // Defined Array values to show in ListView
-        String[] values = new String[] { "Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
+        SharedPreferences preferences = getSharedPreferences("PREFS", 0);
+        lastScore = preferences.getInt("lastScore", 0);
+        best1 = preferences.getInt("best1", 0);
+        best2 = preferences.getInt("best2", 0);
+        best3 = preferences.getInt("best3", 0);
 
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
+        if(lastScore > best3) {
+            best3 = lastScore;
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("best3", best3);
+            editor.apply();
+        }
+        if(lastScore > best2) {
+            int temp = best2;
+            best2 = lastScore;
+            best3 = temp;
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("best3", best3);
+            editor.putInt("best2", best2);
+            editor.apply();
+        }
+        if(lastScore > best1) {
+            int temp = best1;
+            best1 = lastScore;
+            best2 = temp;
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("best2", best2);
+            editor.putInt("best1", best1);
+            editor.apply();
+        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        tv_score.setText("LAST SCORE: " + lastScore + "\n" +
+        "BEST1: " + best1 + "\n" + "BEST2: " + best2 + "\n" + "BEST3: " + best3);
 
 
-        // Assign adapter to ListView
-        listView.setAdapter(adapter);
 
-        // ListView Item Click Listener
-        listView.setOnItemClickListener(new OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition     = position;
-
-                // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);
-
-                // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();
-
-            }
-
-        });
-    }
     }
 
-
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), DemoGameActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}
