@@ -46,12 +46,13 @@ public class HighScoreActivity extends AppCompatActivity {
             editor.putInt("best1", best1);
             editor.putString("first", p1);
             editor.apply();
+            Toast.makeText(HighScoreActivity.this,"You have reached the highest score!",Toast.LENGTH_SHORT).show();
         }else if((best2==best3)&&(best2<lastScore)&&(best1>lastScore)){
             //Toast.makeText(HighScoreActivity.this,"2 : "+best3,Toast.LENGTH_SHORT).show();
             best2 = lastScore;
             p2 = currentPlayer;
 
-            editor.putInt("best2", best1);
+            editor.putInt("best2", best2);
             editor.putString("second", p2);
             editor.apply();
         }else if((best2==best3)&&(best2<lastScore)&&(best1<lastScore)){
@@ -67,6 +68,7 @@ public class HighScoreActivity extends AppCompatActivity {
             editor.putInt("best1", best1);
             editor.putString("first", p1);
             editor.apply();
+            Toast.makeText(HighScoreActivity.this,"You have reached the highest score!",Toast.LENGTH_SHORT).show();
         }else{
             if((lastScore > best3)&&(lastScore!=best2)&&(lastScore!=best1)) {
                 //Toast.makeText(HighScoreActivity.this,"Test : "+best3,Toast.LENGTH_SHORT).show();
@@ -116,6 +118,7 @@ public class HighScoreActivity extends AppCompatActivity {
                 editor.putInt("best1", best1);
                 editor.putString("first", p1);
                 editor.apply();
+                Toast.makeText(HighScoreActivity.this,"You have reached the highest score!",Toast.LENGTH_SHORT).show();
 
             }
         }
