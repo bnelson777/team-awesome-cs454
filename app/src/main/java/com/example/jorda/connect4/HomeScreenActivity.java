@@ -22,7 +22,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private TextView welcomeText;
     private FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    public Player player1 = new Player(2);
+    public Player player1 = new Player(1);
 
 
     @Override
