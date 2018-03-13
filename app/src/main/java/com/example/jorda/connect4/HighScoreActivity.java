@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.util.Log;
 
 public class HighScoreActivity extends AppCompatActivity {
 
@@ -12,6 +13,7 @@ public class HighScoreActivity extends AppCompatActivity {
 
     int lastScore;
     int best1, best2, best3;
+    String currentPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,9 @@ public class HighScoreActivity extends AppCompatActivity {
 
         tv_score = findViewById(R.id.tv_score);
 
+        Intent i = getIntent();
+        currentPlayer = i.getStringExtra("player1");
+        Log.wtf("TAG", currentPlayer);
         SharedPreferences preferences = getSharedPreferences("PREFS", 0);
         lastScore = preferences.getInt("lastScore", 0);
         best1 = preferences.getInt("best1", 0);
@@ -62,7 +67,8 @@ public class HighScoreActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), DemoGameActivity.class);
+        Intent intent = new Intent(HighScoreActivity.this, DemoGameActivity.class);
+        intent.putExtra("player1", currentPlayer);
         startActivity(intent);
         finish();
     }

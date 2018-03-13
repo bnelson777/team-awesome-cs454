@@ -42,8 +42,10 @@ public class DemoGameActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("lastScore", score);
                 editor.apply();
-
-                Intent intent = new Intent(getApplicationContext(), HighScoreActivity.class);
+                Intent i = getIntent();
+                String player1 =  i.getStringExtra("player1");
+                Intent intent = new Intent(DemoGameActivity.this, HighScoreActivity.class);
+                intent.putExtra("player1", player1);
                 startActivity(intent);
                 finish();
 
