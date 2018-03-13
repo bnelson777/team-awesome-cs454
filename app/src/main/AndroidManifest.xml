@@ -53,6 +53,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".OnlineActivity" />
+        <activity android:name=".DemoGameActivity" />
         <activity android:name=".HighScoreActivity"></activity>
     </application>
 
