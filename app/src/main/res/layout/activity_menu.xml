@@ -144,6 +144,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/rounds_hint"
+            android:text="1"
             android:inputType="phone" />
 
         <Button

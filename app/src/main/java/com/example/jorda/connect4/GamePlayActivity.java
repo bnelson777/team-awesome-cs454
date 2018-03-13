@@ -31,14 +31,6 @@ public class GamePlayActivity extends AppCompatActivity {
 /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Log.wtf("u wot m8?", "GamePlayActivity onCreate");
-        setContentView(R.layout.activity_game1);
-
-        Intent intent = getIntent();
-        MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
-
         setContentView(R.layout.gameplay);
         GamePlayView gamePlayView = (GamePlayView) findViewById(R.id.gameView1);
 
@@ -60,11 +52,24 @@ public class GamePlayActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_gameplay);
+
             int board_width = 7;
             int board_height = 6;
-            setContentView(R.layout.activity_gameplay);
+
+            Intent intent = getIntent();
+            MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
+            mColumns = menuController.getBoard_column();
+            mRows = menuController.getBoard_row();
+            mTops = new int[mColumns];
+            mBoard = new int[mColumns][mRows];
+            currentRound = menuController.getNum_rounds();
+
             GamePlayView boardView = (GamePlayView) findViewById ( R.id.gameView1 );
             mController = new GamePlayController(this, boardView, board_width, board_height);
+
+
+
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
         }
