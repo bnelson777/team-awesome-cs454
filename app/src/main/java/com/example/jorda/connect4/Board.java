@@ -1,5 +1,7 @@
 package com.example.jorda.connect4;
 
+import android.util.Log;
+
 import static java.lang.Math.min;
 import static java.lang.StrictMath.max;
 
@@ -24,6 +26,9 @@ public class Board {
         rows = height;
         grid = new int[columns][rows];
         tops = new int[columns];
+
+        Log.wtf("Board", "width"+width+" height"+height);
+        Log.wtf("Board","tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
 
         // Track heuristic score, so we can adjust it on each move,
         // Rather than recalculate the whole thing
@@ -55,10 +60,13 @@ public class Board {
 
     public int makeMove(int column, boolean piece)
     {
-        if (column < 0 || column >= columns || tops[column] == rows || boardFull)
+        //Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+tops[column]+" "+boardFull+" "+maxWon+" "+minWon);
+        if (column < 0 || column >= columns || tops[column] == rows || boardFull || maxWon || minWon)
             return -1;
         grid[column][tops[column]] = (piece?first_player:second_player);
+        //Log.wtf("makeMove","incrementing tops. col: "+column+" top: "+tops[column]);
         tops[column]++;
+        //Log.wtf("makeMove","incremented tops. col: "+column+" top: "+tops[column]);
 
         boardFull = true;
         for (int i=0;i<tops.length;i++)
@@ -72,13 +80,23 @@ public class Board {
                     boolean tWon = true;
                     int r = tops[column] - 1;
                     int c = column;
-                    for (int i = 0; i < 4; i++)
-                        if (r < rows && r >= 0 && c < columns && c >= 0)
-                            if ((piece?first_player:second_player) != grid[c+i*colDir][r+i*colDir]) {
+                    for (int i = 0; i < 4; i++) {
+                        //Log.wtf("wincheck: ", "piece: "+piece+" "+(c+i*colDir)+ " "+(r+i*rowDir) );
+                        if (r < rows && r >= 0 && c < columns && c >= 0
+                                && c + i * colDir < columns && c + i * colDir >= 0
+                                && r + i * rowDir < rows && r + i * rowDir >= 0) {
+                            //Log.wtf("wincheck: ", "grid: "+grid[c + i * colDir][r + i * rowDir]);
+                            if ((piece ? first_player : second_player) != grid[c + i * colDir][r + i * rowDir]) {
                                 tWon = false;
                                 heuristicScore -= (4 - i);
                                 break;
                             }
+                        } else {
+                            tWon = false;
+                            heuristicScore -= (4 - i);
+                            break;
+                        }
+                    }
 
                     if (tWon == true) {
                         if (piece) {
@@ -91,7 +109,7 @@ public class Board {
                     }
                 }
 
-        return heuristicScore;
+        return 0; // return 0 for no errors
     }
 
     public int getHeuristicScore()
@@ -135,5 +153,16 @@ public class Board {
     public boolean isTerminal()
     {
         return maxWon == true || minWon == true;
+    }
+
+    /*
+    Note that the top of a column is the FREE space above the topmost piece
+     */
+    public int getTop(int column)
+    {
+        //Log.wtf("gettop","column "+column+" top "+tops[column]);
+        if (column < 0 || column > tops.length - 1)
+            return -1;
+        return tops[column];
     }
 }

@@ -57,7 +57,9 @@ public class GamePlayController implements View.OnClickListener {
         }
 
         mGamePlay.placeMove(column, mPlayerTurn);
-        mPlayView.dropDisc(mFree[column], column, mPlayerTurn);
+        //mPlayView.dropDisc(mFree[column], column, mPlayerTurn);
+        mPlayView.dropDisc(ROWS - mGamePlay.tops(column), column, mPlayerTurn);
+        Log.wtf("GamePlayController", "column is "+column+" mFree is "+mFree[column]+" ROWS is "+ROWS+" tops is "+mGamePlay.tops(column));
         mPlayerTurn = mPlayerTurn == 1 ? 2 : 1;
 
         //mGamePlay.doMove( (int)v.getX() / (int) mPlayView.getCellWidth() );

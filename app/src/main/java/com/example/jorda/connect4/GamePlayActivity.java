@@ -40,6 +40,7 @@ public class GamePlayActivity extends AppCompatActivity {
             mBoard = new int[mColumns][mRows];
             currentRound = menuController.getNum_rounds();
 
+            /*
             Log.wtf("GamePlayActivity", menuController.getPlayer1_color()); //if the color is black, it goes first
             Log.wtf("GamePlayActivity", menuController.getPlayer2_color());
             Log.wtf("GamePlayActivity", menuController.getPlayer1());
@@ -51,6 +52,7 @@ public class GamePlayActivity extends AppCompatActivity {
             Log.wtf("GamePlayActivity", menuController.getFirst_player()); //Either player1 or player2
             Log.wtf("GamePlayActivity", ""+menuController.getBoard_row());
             Log.wtf("GamePlayActivity", ""+menuController.getBoard_column());
+*/
 
             GamePlayView boardView = (GamePlayView) findViewById ( R.id.gameView1 );
             mController = new GamePlayController(this, boardView, mColumns, mRows);
