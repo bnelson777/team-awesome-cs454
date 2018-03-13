@@ -3,19 +3,19 @@ package com.example.jorda.connect4;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 /**
  * Created by school on 2/28/2018.
  */
 
-public class GamePlayView extends RelativeLayout {
+public class GamePlayViewSmall extends GamePlayView {
     private int COLS;
     private int ROWS;
     private GamePlayController mListener;
@@ -45,17 +45,17 @@ public class GamePlayView extends RelativeLayout {
     protected TextView mWinnerView;
     protected Context mContext;
 
-    public GamePlayView(Context context) {
+    public GamePlayViewSmall(Context context) {
         super(context);
         init(context);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs) {
+    public GamePlayViewSmall(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GamePlayViewSmall(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -63,8 +63,8 @@ public class GamePlayView extends RelativeLayout {
     private void init(Context context) {
         this.mContext = context;
 
-            inflate(context, R.layout.gameplay_large, this);
-            mBoardView = findViewById(R.id.gameplayLarge);
+            inflate(context, R.layout.gameplay_small, this);
+            mBoardView = findViewById(R.id.gameplaySmall);
 
         mWinnerView = (TextView) findViewById(R.id.winner_text);
 

@@ -15,7 +15,7 @@ import android.widget.TextView;
  * Created by school on 2/28/2018.
  */
 
-public class GamePlayView extends RelativeLayout {
+public class GamePlayViewMedium extends GamePlayView {
     private int COLS;
     private int ROWS;
     private GamePlayController mListener;
@@ -45,17 +45,17 @@ public class GamePlayView extends RelativeLayout {
     protected TextView mWinnerView;
     protected Context mContext;
 
-    public GamePlayView(Context context) {
+    public GamePlayViewMedium(Context context) {
         super(context);
         init(context);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs) {
+    public GamePlayViewMedium(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GamePlayViewMedium(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -63,8 +63,8 @@ public class GamePlayView extends RelativeLayout {
     private void init(Context context) {
         this.mContext = context;
 
-            inflate(context, R.layout.gameplay_large, this);
-            mBoardView = findViewById(R.id.gameplayLarge);
+            inflate(context, R.layout.gameplay_medium, this);
+            mBoardView = findViewById(R.id.gameplayMedium);
 
         mWinnerView = (TextView) findViewById(R.id.winner_text);
 

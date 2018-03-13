@@ -1,16 +1,10 @@
 package com.example.jorda.connect4;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.jorda.connect4.R;
 import android.content.Intent;
 
 /**
@@ -25,28 +19,31 @@ public class GamePlayActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_gameplay);
 
             Intent intent = getIntent();
             MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
 
-            /*
-            Log.wtf("GamePlayActivity", menuController.getPlayer1_color()); //if the color is black, it goes first
-            Log.wtf("GamePlayActivity", menuController.getPlayer2_color());
-            Log.wtf("GamePlayActivity", menuController.getPlayer1());
-            Log.wtf("GamePlayActivity", menuController.getPlayer2());
-            Log.wtf("GamePlayActivity", menuController.getPlayer1_difficulty());
-            Log.wtf("GamePlayActivity", menuController.getPlayer2_difficulty());
-            Log.wtf("GamePlayActivity", menuController.getBoard_size());
-            Log.wtf("GamePlayActivity", ""+menuController.getNum_rounds()); //needed to be implemented
-            Log.wtf("GamePlayActivity", menuController.getFirst_player()); //Either player1 or player2
-            Log.wtf("GamePlayActivity", ""+menuController.getBoard_row());
-            Log.wtf("GamePlayActivity", ""+menuController.getBoard_column());
+
+           // if (menuController.getBoard_size().equals("Small")) {
+                setContentView(R.layout.activity_gameplay_small);
+                GamePlayViewSmall boardView =  findViewById(R.id.gameViewSmall);
+                mController = new GamePlayController(this, boardView, menuController);
+                /*
+            } else if (menuController.getBoard_size().equals("Medium")) {
+
+                Log.wtf("GamePlayActivity","calling findViewById");
+                setContentView(R.layout.activity_gameplay_medium);
+                GamePlayViewMedium boardView =  findViewById(R.id.gameViewMedium);
+                if (boardView == null)
+                    Log.wtf("GamePlayActivity","findViewById returned null");
+                mController = new GamePlayController(this, boardView, menuController);
+
+            } else {
+                setContentView(R.layout.activity_gameplay_large);
+                GamePlayViewLarge boardView =  findViewById(R.id.gameViewLarge);
+                mController = new GamePlayController(this, boardView, menuController);
+            }
 */
-
-            GamePlayView boardView = (GamePlayView) findViewById ( R.id.gameView1 );
-            mController = new GamePlayController(this, boardView, menuController);
-
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
         }
