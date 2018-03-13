@@ -48,7 +48,10 @@ public class GamePlayController implements View.OnClickListener {
         }
     }
 
-    private void selectColumn(int column) {
+    @Override
+    public void onClick(@NonNull View v)
+    {
+        int column = (int)v.getX() / (int) mPlayView.getCellWidth();
         if (mFree[column] == 0) {
             return;
         }
@@ -56,13 +59,6 @@ public class GamePlayController implements View.OnClickListener {
         mGamePlay.placeMove(column, mPlayerTurn);
         mPlayView.dropDisc(mFree[column], column, mPlayerTurn);
         mPlayerTurn = mPlayerTurn == 1 ? 2 : 1;
-    }
-
-    @Override
-    public void onClick(@NonNull View v)
-    {
-        int col = mPlayView.colAtX(v.getX());
-        selectColumn(col);
 
         //mGamePlay.doMove( (int)v.getX() / (int) mPlayView.getCellWidth() );
     }

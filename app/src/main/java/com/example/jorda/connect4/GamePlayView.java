@@ -155,6 +155,10 @@ public class GamePlayView extends RelativeLayout {
         return col;
     }
 
+    public float getCellWidth() {
+        return mCells[0][0].getWidth();
+    }
+
     /**
      * toggle player indicator
      *
