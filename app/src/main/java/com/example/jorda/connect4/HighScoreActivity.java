@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.util.Log;
+import android.widget.Toast;
 
 public class HighScoreActivity extends AppCompatActivity {
 
@@ -35,54 +36,89 @@ public class HighScoreActivity extends AppCompatActivity {
         p2 = preferences.getString("second", "-");
         p3 = preferences.getString("third", "-");
 
+        SharedPreferences.Editor editor = preferences.edit();
 
+        if((best1==best2)&&(best2==best3)&&(best1<=lastScore)){ //because at first every value is the same, 0
+            //Toast.makeText(HighScoreActivity.this,"3 : "+best3,Toast.LENGTH_SHORT).show();
+            best1 = lastScore;
+            p1 = currentPlayer;
 
-        if(lastScore > best3) {
-            best3 = lastScore;
-            p3 = currentPlayer;
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("best3", best3);
-            editor.putString("third", p3);
+            editor.putInt("best1", best1);
+            editor.putString("first", p1);
             editor.apply();
-        }
-        if(lastScore > best2) {
-            int temp = best2;
-            String prevP = p2;
+        }else if((best2==best3)&&(best2<lastScore)&&(best1>lastScore)){
+            //Toast.makeText(HighScoreActivity.this,"2 : "+best3,Toast.LENGTH_SHORT).show();
             best2 = lastScore;
             p2 = currentPlayer;
-            best3 = temp;
-            p3 = prevP;
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("best3", best3);
-            editor.putString("third", p3);
-            editor.putInt("best2", best2);
+
+            editor.putInt("best2", best1);
             editor.putString("second", p2);
             editor.apply();
-        }
-        if(lastScore > best1) {
+        }else if((best2==best3)&&(best2<lastScore)&&(best1<lastScore)){
+            //Toast.makeText(HighScoreActivity.this,"1 : "+best3,Toast.LENGTH_SHORT).show();
             int temp = best1;
             String prevP = p1;
             best1 = lastScore;
             p1 = currentPlayer;
-            int temp2 = best2;
-            String prevP2 = p2;
             best2 = temp;
             p2 = prevP;
-
-
-            Log.wtf("best3 before temp2", Integer.toString(best3));
-            best3 = temp2;
-            p3 = prevP2;
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("best3", best3);
-            editor.putString("third", p3);
             editor.putInt("best2", best2);
             editor.putString("second", p2);
             editor.putInt("best1", best1);
             editor.putString("first", p1);
             editor.apply();
-        }
+        }else{
+            if((lastScore > best3)&&(lastScore!=best2)&&(lastScore!=best1)) {
+                //Toast.makeText(HighScoreActivity.this,"Test : "+best3,Toast.LENGTH_SHORT).show();
+                best3 = lastScore;
+                p3 = currentPlayer;
 
+                editor.putInt("best3", best3);
+                editor.putString("third", p3);
+                editor.apply();
+            }
+            if((lastScore > best2)&&(lastScore!=best1)) {
+                int temp = best2;
+                String prevP = p2;
+                best2 = lastScore;
+                p2 = currentPlayer;
+                best3 = temp;
+                p3 = prevP;
+                //Toast.makeText(HighScoreActivity.this,"Test : "+best3,Toast.LENGTH_SHORT).show();
+                // SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("best3", best3);
+                editor.putString("third", p3);
+                editor.putInt("best2", best2);
+                editor.putString("second", p2);
+                editor.apply();
+            }
+            if(lastScore > best1) {
+                //Toast.makeText(HighScoreActivity.this,"Test2 : "+best3,Toast.LENGTH_SHORT).show();
+                int temp = best1;
+                String prevP = p1;
+                best1 = lastScore;
+                p1 = currentPlayer;
+
+                int temp2 = best2;
+                String prevP2 = p2;
+                best2 = temp;
+                p2 = prevP;
+
+                //Log.wtf("best3 before temp2", Integer.toString(best3));
+                //best3 = temp2;
+                //p3 = prevP2;
+                //Toast.makeText(HighScoreActivity.this,"Test3 : "+best3,Toast.LENGTH_SHORT).show();
+                //SharedPreferences.Editor editor = preferences.edit();
+                //editor.putInt("best3", best3);
+                //editor.putString("third", p3);
+                editor.putInt("best2", best2);
+                editor.putString("second", p2);
+                editor.putInt("best1", best1);
+                editor.putString("first", p1);
+                editor.apply();
+
+            }
+        }
 
         tv_score.setText("LAST GAME- " + currentPlayer + ": " + lastScore + "\n" +
                 "1. : " + p1 + ": " + best1 + "\n" +
