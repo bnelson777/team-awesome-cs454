@@ -35,18 +35,27 @@ public class GamePlayModel {
     /**
      * placing a Move on the mGrid
      */
-    public void placeMove(int column, int player) {
+    public boolean placeMove(int column, int player) {
         if (mFree[column] > 0) {
             mGrid[mFree[column] - 1][column] = player;
             mFree[column]--;
         }
-        Log.wtf("GamePlayModel","calling makeMove");
-        mBoard.makeMove(column, currentPlayer);
+        //Log.wtf("GamePlayModel","calling makeMove");
+        if (-1 == mBoard.makeMove(column, currentPlayer))
+            return false;
+
         currentPlayer = !currentPlayer;
+        return true;
     }
 
     public int tops(int column)
     {
         return mBoard.getTop(column);
+    }
+
+    // Return # of free spaces in column
+    public int free(int column)
+    {
+        return mBoard.free(column);
     }
 }

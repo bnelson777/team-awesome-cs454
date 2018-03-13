@@ -60,7 +60,8 @@ public class Board {
 
     public int makeMove(int column, boolean piece)
     {
-        //Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+tops[column]+" "+boardFull+" "+maxWon+" "+minWon);
+        Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+tops[column]+" "+boardFull+" "+maxWon+" "+minWon);
+        Log.wtf("makeMove", "tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
         if (column < 0 || column >= columns || tops[column] == rows || boardFull || maxWon || minWon)
             return -1;
         grid[column][tops[column]] = (piece?first_player:second_player);
@@ -69,8 +70,10 @@ public class Board {
         //Log.wtf("makeMove","incremented tops. col: "+column+" top: "+tops[column]);
 
         boardFull = true;
+        //Log.wtf("makeMove", "rows: "+rows+" full: "+boardFull+"bf: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
         for (int i=0;i<tops.length;i++)
             boardFull &= (tops[i] == rows);
+        //Log.wtf("makeMove", "rows: "+rows+" full: "+boardFull+" af: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
 
         // adjust heuristic score (max potential 4-in-rows
         // minus potential min 4-in-rows)
@@ -164,5 +167,12 @@ public class Board {
         if (column < 0 || column > tops.length - 1)
             return -1;
         return tops[column];
+    }
+
+    public int free(int column)
+    {
+        if (column <0 || column>=columns)
+            return -1;
+        return rows - tops[column];
     }
 }
