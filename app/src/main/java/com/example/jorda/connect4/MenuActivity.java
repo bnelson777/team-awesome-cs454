@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,6 +19,7 @@ import com.example.jorda.connect4.R;
 public class MenuActivity extends AppCompatActivity {
 
     final MenuController menuController = new MenuController();
+    EditText round_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class MenuActivity extends AppCompatActivity {
                 R.array.board_sizes, android.R.layout.simple_spinner_item);
         adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Board_size.setAdapter(adapter7);
+
+        round_count = (EditText) findViewById(R.id.round_count_input);
 
         Player1_color.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -184,12 +188,15 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
-
     }
 
     public void beginGame(View view)
     {
         Log.wtf("MenuActivity", "beginning Game");
+
+        menuController.setNum_rounds(Integer.parseInt(round_count.getText().toString()));
+        Log.v("round count", round_count.getText().toString());
+
         Intent intent = new Intent(this, GamePlayActivity.class);
         intent.putExtra("MenuController", menuController);
         startActivity(intent);
