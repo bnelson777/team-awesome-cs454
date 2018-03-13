@@ -18,14 +18,9 @@ import android.content.Intent;
  */
 
 public class GamePlayActivity extends AppCompatActivity {
-    private int mColumns;
-    private int mRows;
-    private int mTops[]; // Current tops of each column
     private GamePlayController mController;
     //final private GamePlayView mGamePlayView;
     private View mGamePlayView;
-    private int currentRound;
-    private int mBoard[][];
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +29,6 @@ public class GamePlayActivity extends AppCompatActivity {
 
             Intent intent = getIntent();
             MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
-            mColumns = menuController.getBoard_column();
-            mRows = menuController.getBoard_row();
-            mTops = new int[mColumns];
-            mBoard = new int[mColumns][mRows];
-            currentRound = menuController.getNum_rounds();
 
             /*
             Log.wtf("GamePlayActivity", menuController.getPlayer1_color()); //if the color is black, it goes first
@@ -55,7 +45,7 @@ public class GamePlayActivity extends AppCompatActivity {
 */
 
             GamePlayView boardView = (GamePlayView) findViewById ( R.id.gameView1 );
-            mController = new GamePlayController(this, boardView, mColumns, mRows);
+            mController = new GamePlayController(this, boardView, menuController);
 
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);

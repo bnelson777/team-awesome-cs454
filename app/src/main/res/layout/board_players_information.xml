@@ -41,7 +41,7 @@
                     android:layout_width="@dimen/player_indicator_image_size"
                     android:layout_height="@dimen/player_indicator_image_size"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/player_piece_1" />
+                    android:src="@drawable/player_piece_white" />
 
                 <ProgressBar
                     android:id="@+id/player1_indicator"
@@ -83,7 +83,7 @@
                     android:layout_width="@dimen/player_indicator_image_size"
                     android:layout_height="@dimen/player_indicator_image_size"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/player_piece_2" />
+                    android:src="@drawable/player_piece_black" />
 
                 <ProgressBar
                     android:id="@+id/player2_indicator"

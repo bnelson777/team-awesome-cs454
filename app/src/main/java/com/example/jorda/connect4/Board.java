@@ -18,6 +18,8 @@ public class Board {
     boolean maxWon;
     boolean minWon;
     boolean boardFull;
+    int[] winX;
+    int[] winY;
     private static final int first_player = 1;
     private static final int second_player = -1;
 
@@ -35,6 +37,8 @@ public class Board {
         heuristicScore = 0;
         maxWon = false;
         minWon = false;
+        winX = new int[4];
+        winY = new int[4];
     }
 
     public Board(Board in) {
@@ -49,6 +53,8 @@ public class Board {
         this.grid = new int[in.grid.length][];
         for (int i = 0; i < in.grid.length; i++)
             this.grid[i] = in.grid[i].clone();
+        this.winX = in.winX.clone();
+        this.winY = in.winY.clone();
     }
 
     public Board simulateMove(int column, boolean piece)
@@ -60,14 +66,14 @@ public class Board {
 
     public int makeMove(int column, boolean piece)
     {
-        Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+tops[column]+" "+boardFull+" "+maxWon+" "+minWon);
-        Log.wtf("makeMove", "tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
+        //Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+tops[column]+" "+boardFull+" "+maxWon+" "+minWon);
+        //Log.wtf("makeMove", "tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
         if (column < 0 || column >= columns || tops[column] == rows || boardFull || maxWon || minWon)
             return -1;
+        //Log.wtf("Board","moving to "+column+" "+tops[column]);
         grid[column][tops[column]] = (piece?first_player:second_player);
-        //Log.wtf("makeMove","incrementing tops. col: "+column+" top: "+tops[column]);
         tops[column]++;
-        //Log.wtf("makeMove","incremented tops. col: "+column+" top: "+tops[column]);
+
 
         boardFull = true;
         //Log.wtf("makeMove", "rows: "+rows+" full: "+boardFull+"bf: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
@@ -102,6 +108,12 @@ public class Board {
                     }
 
                     if (tWon == true) {
+                        // populate winX[] and winY[]
+                        for (int i=0; i<4; i++)
+                        {
+                            winX[i] = c+i*colDir;
+                            winY[i] = r+i*rowDir;
+                        }
                         if (piece) {
                             maxWon = true;
                             heuristicScore = columns*rows;
@@ -155,7 +167,7 @@ public class Board {
     // is this a terminal node?
     public boolean isTerminal()
     {
-        return maxWon == true || minWon == true;
+        return maxWon == true || minWon == true || boardFull == true;
     }
 
     /*

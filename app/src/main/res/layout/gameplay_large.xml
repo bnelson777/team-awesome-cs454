@@ -48,7 +48,7 @@
                 android:layout_width="@dimen/player_indicator_image_size"
                 android:layout_height="@dimen/player_indicator_image_size"
                 android:layout_centerInParent="true"
-                android:src="@drawable/player_piece_1" />
+                android:src="@drawaplayer_piece_whitece_1" />
 
             <ProgressBar
                 android:id="@+id/player1_indicator"
@@ -90,7 +90,7 @@
                 android:layout_width="@dimen/player_indicator_image_size"
                 android:layout_height="@dimen/player_indicator_image_size"
                 android:layout_centerInParent="true"
-                android:src="@drawable/player_piece_2" />
+                android:src="@drawaplayer_piece_blackce_2" />
 
             <ProgressBar
                 android:id="@+id/player2_indicator"
@@ -119,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-2dp"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:clipChildren="false">
 
             <ImageView
@@ -181,7 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-2dp"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:clipChildren="false">
 
             <ImageView
@@ -243,7 +243,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-2dp"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:clipChildren="false">
 
             <ImageView
@@ -305,7 +305,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-2dp"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:clipChildren="false">
 
             <ImageView
@@ -367,7 +367,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-2dp"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:clipChildren="false">
 
             <ImageView
@@ -429,7 +429,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-2dp"
-            android:background="@color/grey"
+            android:background="@color/lightgrey"
             android:clipChildren="false">
 
             <ImageView

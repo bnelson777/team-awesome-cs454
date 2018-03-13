@@ -6,15 +6,19 @@ package com.example.jorda.connect4;
 
 public class AiPlayer extends Player {
     Board thinkingBoard;
+    private int mDifficulty;
 
-    AiPlayer(Board board_in, boolean PlayerType)
+    AiPlayer(boolean PlayerType, Board board_in, int piece, int winPiece, int difficulty)
     {
-        mPlayerType = PlayerType;
+        super(PlayerType, piece, winPiece);
+        maximizingPlayer = PlayerType;
         thinkingBoard = new Board(board_in);
+        mDifficulty = difficulty;
+        type = "AI";
     }
 
     int getMove() {
-        return thinkingBoard.alphabeta(5, mPlayerType);
+        return thinkingBoard.alphabeta(mDifficulty, maximizingPlayer);
     }
 
 

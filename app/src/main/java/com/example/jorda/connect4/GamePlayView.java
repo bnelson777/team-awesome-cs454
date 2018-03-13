@@ -7,11 +7,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 /**
  * Created by school on 2/28/2018.
@@ -66,10 +64,10 @@ public class GamePlayView extends RelativeLayout {
         this.mContext = context;
         if (false) {
 
-            inflate(context, R.layout.gameplay, this);
+            inflate(context, R.layout.gameplay_small, this);
             mBoardView = findViewById(R.id.gameplay);
         } else {
-            inflate(context, R.layout.gameplay, this);
+            inflate(context, R.layout.gameplay_small, this);
             mBoardView = findViewById(R.id.gameplay );
         }
 
@@ -90,19 +88,13 @@ public class GamePlayView extends RelativeLayout {
         buildCells();
     }
 
-    /**
-     * initialize mPlayer1 information with Gameules
-     */
     private void setPlayer1(String player1) {
-        mPlayer1.disc.setImageResource(R.drawable.player_piece_1);
+        mPlayer1.disc.setImageResource(R.drawable.player_piece_white);
         mPlayer1.name.setText(player1);
     }
 
-    /**
-     * initialize mPlayer2 information with Gameules
-     */
     private void setPlayer2() {
-        mPlayer2.disc.setImageResource(R.drawable.player_piece_2);
+        mPlayer2.disc.setImageResource(R.drawable.player_piece_black);
         mPlayer2.name.setText(R.string.default_player_2);
     }
 
@@ -123,49 +115,27 @@ public class GamePlayView extends RelativeLayout {
         }
     }
 
-    /**
-     * Drop a disc of the current player at available row of selected column
-     *
-     * @param col column to drop disc
-     * @param row row of the column
-     */
-    public void dropDisc(int row, int col, final int playerTurn) {
+    public void dropDisc(int row, int col, int resource) {
         final ImageView cell = mCells[row][col];
         float move = -(cell.getHeight() * row + cell.getHeight() + 15);
         cell.setY(move);
-        cell.setImageResource(playerTurn == 1 ?
-                R.drawable.player_piece_1 : R.drawable.player_piece_2);
+        cell.setImageResource(resource);
         cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
-    }
-
-    /**
-     * get column from touch
-     *
-     * @param x touch location
-     * @return column from  the location(0..6)
-     */
-    public int colAtX(float x) {
-        float colWidth = mCells[0][0].getWidth();
-        int col = (int) x / (int) colWidth;
-        if (col < 0)
-            return 0;
-        //change
-        if (col > COLS - 1 )
-            return COLS - 1;
-        return col;
     }
 
     public float getCellWidth() {
         return mCells[0][0].getWidth();
     }
 
-    /**
-     * toggle player indicator
-     *
-     * @param playerTurn next players value
-     */
     public void togglePlayer(int playerTurn) {
         mPlayer1.turnIndicator.setVisibility(playerTurn == 1 ? VISIBLE : INVISIBLE);
         mPlayer2.turnIndicator.setVisibility(playerTurn == 2 ? VISIBLE : INVISIBLE);
+    }
+
+    // Highlight a square, to indicate a winning piece
+    public void highlight(int x, int y, int imageresource_id)
+    {
+        Log.wtf("view", "highlighting "+x+" "+y);
+        mCells[ROWS - 1 - y][x].setImageResource(imageresource_id);
     }
 }

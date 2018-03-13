@@ -8,42 +8,19 @@ import android.util.Log;
  */
 
 public class GamePlayModel {
-    @NonNull
-    private final int[][] mGrid;
-    public final int numCols;
-    private final int numRows;
-    private final int[] mFree;
     Board mBoard;
     boolean currentPlayer;
 
-    /**
-     * Initialise members
-     *
-     * @param grid reference to board grid
-     * @param free reference to column height
-     */
-    public GamePlayModel(@NonNull int[][] grid, int[] free) {
-        mGrid = grid;
-        numRows = grid.length;
-        numCols = grid[0].length;
-        this.mFree = free;
 
-        mBoard = new Board(grid[0].length, grid.length);
+    public GamePlayModel(int width, int height)
+    {
+        mBoard = new Board(width, height);
         currentPlayer = true;
     }
 
-    /**
-     * placing a Move on the mGrid
-     */
-    public boolean placeMove(int column, int player) {
-        if (mFree[column] > 0) {
-            mGrid[mFree[column] - 1][column] = player;
-            mFree[column]--;
-        }
-        //Log.wtf("GamePlayModel","calling makeMove");
-        if (-1 == mBoard.makeMove(column, currentPlayer))
+    public boolean placeMove(int column) {
+        if ( mBoard.makeMove(column, currentPlayer) < 0)
             return false;
-
         currentPlayer = !currentPlayer;
         return true;
     }
@@ -58,4 +35,27 @@ public class GamePlayModel {
     {
         return mBoard.free(column);
     }
+
+    public boolean getCurrentPlayer()
+    {
+        return currentPlayer;
+    }
+
+    public boolean maxWon()
+    {
+        return mBoard.maxWon;
+    }
+    public boolean minWon()
+    {
+        return mBoard.minWon;
+    }
+    public int winX(int i)
+    {
+        return mBoard.winX[i];
+    }
+    public int winY(int i)
+    {
+        return mBoard.winY[i];
+    }
+    public Board getBoard() {return mBoard;}
 }
