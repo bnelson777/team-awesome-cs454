@@ -1,15 +1,16 @@
 package com.example.jorda.connect4;
 import java.io.Serializable;
+import android.util.Log;
 
 /**
  * Created by branden on 3/12/18.
  */
 
 public class Player implements Serializable{
-    private boolean maximizingPlayer;
+    protected boolean maximizingPlayer;
     private int mPieceResource;
     private int mWinPieceResource;
-    private String type;
+    protected String type;
 
 
     private String name;
