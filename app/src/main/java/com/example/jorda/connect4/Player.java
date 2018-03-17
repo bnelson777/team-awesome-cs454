@@ -10,6 +10,7 @@ public class Player {
     boolean maximizingPlayer;
     int mPieceResource;
     int mWinPieceResource;
+    String name;
     String type;
 
     Player()
@@ -17,13 +18,14 @@ public class Player {
 
     }
 
-    Player( boolean maxPlayer, int piece_resource, int win_piece_resource)
+    Player( boolean maxPlayer, int piece_resource, int win_piece_resource, String name_in)
     {
         maximizingPlayer = maxPlayer;
         Log.wtf("Player saving",""+piece_resource+" "+"win_piece_resource");
         mPieceResource = piece_resource;
         mWinPieceResource = win_piece_resource;
         type = "Human";
+        name = name_in;
     }
 
 
@@ -43,5 +45,10 @@ public class Player {
         return mWinPieceResource;
     }
 
-    public boolean isAi() { Log.wtf("player","my type "+type); return type.equals("AI");}
+    public boolean isAi() {
+        //Log.wtf("player","my type "+type);
+        return type.equals("AI");
+    }
+
+    public String getName() {return name;}
 }

@@ -30,10 +30,10 @@ public class GamePlayViewMedium extends GamePlayView {
         public final ImageView disc;
         public final View turnIndicator;
 
-        public PlayerInformation(int player_name_id, int player_disc_id, int player_indicator_id) {
+        public PlayerInformation(int player_name_id, int player_disc_id) {
             name = (TextView) findViewById(player_name_id);
             disc = (ImageView) findViewById(player_disc_id);
-            turnIndicator = findViewById(player_indicator_id);
+            turnIndicator = null;
         }
     }
 
@@ -68,8 +68,8 @@ public class GamePlayViewMedium extends GamePlayView {
 
         mWinnerView = (TextView) findViewById(R.id.winner_text);
 
-        mPlayer1 = new PlayerInformation(R.id.player1_name, R.id.player1_disc, R.id.player1_indicator);
-        mPlayer2 = new PlayerInformation(R.id.player2_name, R.id.player2_disc, R.id.player2_indicator);
+        mPlayer1 = new PlayerInformation(R.id.player1_name, R.id.player1_disc);
+        mPlayer2 = new PlayerInformation(R.id.player2_name, R.id.player2_disc);
 
     }
 

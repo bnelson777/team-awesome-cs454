@@ -5,9 +5,8 @@
     android:clipChildren="false">
 
     <include
-
-        android:id="@+id/player_info"
-        layout="@layout/board_players_information" />
+        android:id="@+id/status_banner"
+        layout="@layout/status_banner" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gameplayLarge"
