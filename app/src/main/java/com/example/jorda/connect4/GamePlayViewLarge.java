@@ -15,61 +15,82 @@ import android.widget.TextView;
  * Created by school on 2/28/2018.
  */
 
-public class GamePlayView extends RelativeLayout {
+public class GamePlayViewLarge extends GamePlayView {
+    private int COLS;
+    private int ROWS;
+    private GamePlayController mListener;
+
+    /**
+     * view holder for player information
+     */
     protected class PlayerInformation {
         @NonNull
         public final TextView name;
         @NonNull
         public final ImageView disc;
         public final View turnIndicator;
-        public final int piece;
-        public final int winPiece;
 
-        public PlayerInformation(int player_name_id, int player_disc_id, int player_piece, int player_win_piece) {
-            name = findViewById(player_name_id);
-            disc = findViewById(player_disc_id);
-            piece = player_piece;
-            winPiece = player_win_piece;
+        public PlayerInformation(int player_name_id, int player_disc_id) {
+            name = (TextView) findViewById(player_name_id);
+            disc = (ImageView) findViewById(player_disc_id);
             turnIndicator = null;
         }
     }
 
-    private int COLS;
-    private int ROWS;
-    private GamePlayController mListener;
     public PlayerInformation mPlayer1; //changed it to be public
     public PlayerInformation mPlayer2;
-    protected ImageView[][] mCells;
+
+    private ImageView[][] mCells;
     protected View mBoardView;
     protected TextView mWinnerView;
-    protected TextView mRoundView;
     protected Context mContext;
 
-    public GamePlayView(Context context) {
+    public GamePlayViewLarge(Context context) {
         super(context);
+        init(context);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs) {
+    public GamePlayViewLarge(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GamePlayViewLarge(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
     }
 
-    public void initialize(GamePlayController gamePlayController,  int cols_in, int rows_in, int p1piece, int p1winPiece, int p2piece, int p2winPiece) {
-        mBoardView = findViewById(R.id.gameplaySmall);
-        mWinnerView = findViewById(R.id.winner_text);
-        mRoundView = findViewById(R.id.current_round_text);
-        mPlayer1 = new PlayerInformation(R.id.player1_name, R.id.player1_disc, p1piece, p1winPiece);
-        mPlayer2 = new PlayerInformation(R.id.player2_name, R.id.player2_disc, p2piece, p2winPiece);
+    private void init(Context context) {
+        this.mContext = context;
 
+            inflate(context, R.layout.gameplay_large, this);
+            mBoardView = findViewById(R.id.gameplayLarge);
+
+        mWinnerView = (TextView) findViewById(R.id.winner_text);
+
+        mPlayer1 = new PlayerInformation(R.id.player1_name, R.id.player1_disc);
+        mPlayer2 = new PlayerInformation(R.id.player2_name, R.id.player2_disc);
+
+    }
+
+    public void initialize(GamePlayController gamePlayController,  int cols_in, int rows_in) {
         this.COLS = cols_in;
         this.ROWS = rows_in;
         this.mListener = gamePlayController;
-        highlightPlayer(1);
-        unhighlightPlayer(2);
+        setPlayer1("Henry");
+        setPlayer2();
+        togglePlayer(1);
         buildCells();
+    }
+
+    private void setPlayer1(String player1) {
+        mPlayer1.disc.setImageResource(R.drawable.player_piece_white);
+        mPlayer1.name.setText(player1);
+    }
+
+    private void setPlayer2() {
+        mPlayer2.disc.setImageResource(R.drawable.player_piece_black);
+        mPlayer2.name.setText(R.string.default_player_2);
     }
 
     /**
@@ -101,39 +122,15 @@ public class GamePlayView extends RelativeLayout {
         return mCells[0][0].getWidth();
     }
 
-    public void highlightPlayer(int player)
-    {
-        if (player == 1) {
-            //Log.wtf("View","highlighting player 1");
-            mPlayer1.disc.setImageResource(mPlayer1.winPiece);
-        }
-            else
-            mPlayer2.disc.setImageResource(mPlayer2.winPiece);
-    }
-
-    public void unhighlightPlayer(int player)
-    {
-        if (player == 1)
-            mPlayer1.disc.setImageResource(mPlayer1.piece);
-        else
-            mPlayer2.disc.setImageResource(mPlayer2.piece);
+    public void togglePlayer(int playerTurn) {
+        mPlayer1.turnIndicator.setVisibility(playerTurn == 1 ? VISIBLE : INVISIBLE);
+        mPlayer2.turnIndicator.setVisibility(playerTurn == 2 ? VISIBLE : INVISIBLE);
     }
 
     // Highlight a square, to indicate a winning piece
     public void highlight(int x, int y, int imageresource_id)
     {
-        //mCells[ROWS - 1 - y][x].setImageResource(imageresource_id);
-        mCells[mCells.length - 1 - y][x].setImageResource(imageresource_id);
+        Log.wtf("view", "highlighting "+x+" "+y);
+        mCells[ROWS - 1 - y][x].setImageResource(imageresource_id);
     }
-
-    public void showRounds(int current, int total)
-    {
-        mRoundView.setText(""+current+"/"+total);
-    }
-
-    public void winMessage(String message)
-    {
-        mWinnerView.setText(message);
-    }
-
 }

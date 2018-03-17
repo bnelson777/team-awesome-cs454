@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class MenuController implements Serializable{
-    private String player1_color; //if the color is black, it goes first
+    private String player1_color;
     private String player2_color;
     private String player1;
     private String player2;
@@ -77,7 +77,7 @@ public class MenuController implements Serializable{
 
     public void setPlayer1_color(String player1_color) {
         this.player1_color = player1_color;
-        this.first_player = decide_first_player();
+       // this.first_player = decide_first_player();
     }
 
     public String getPlayer2_color() {
@@ -86,7 +86,7 @@ public class MenuController implements Serializable{
 
     public void setPlayer2_color(String player2_color) {
         this.player2_color = player2_color;
-        this.first_player = decide_first_player();
+        //this.first_player = decide_first_player();
     }
 
     public String getPlayer1() {

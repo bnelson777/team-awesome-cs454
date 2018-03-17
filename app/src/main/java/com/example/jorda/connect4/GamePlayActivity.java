@@ -1,16 +1,10 @@
 package com.example.jorda.connect4;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.jorda.connect4.R;
 import android.content.Intent;
 
 /**
@@ -18,53 +12,38 @@ import android.content.Intent;
  */
 
 public class GamePlayActivity extends AppCompatActivity {
-    private int mColumns;
-    private int mRows;
-    private int mTops[]; // Current tops of each column
     private GamePlayController mController;
     //final private GamePlayView mGamePlayView;
     private View mGamePlayView;
-    private int currentRound;
-    private int mBoard[][];
 
-
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Log.wtf("u wot m8?", "GamePlayActivity onCreate");
-        setContentView(R.layout.activity_game1);
-
-        Intent intent = getIntent();
-        MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
-
-        setContentView(R.layout.gameplay);
-        GamePlayView gamePlayView = (GamePlayView) findViewById(R.id.gameView1);
-
-        //Test the chosen board size
-        //Toast.makeText(GamePlayActivity.this,"Test : "+menuController.getPlayer2_color(),Toast.LENGTH_SHORT).show();
-
-        mColumns = menuController.getBoard_column();
-        mRows = menuController.getBoard_row();
-        mTops = new int[mColumns];
-        mBoard = new int[mColumns][mRows];
-        currentRound = menuController.getNum_rounds();
-        //mGamePlayView = (View) findViewById(R.id.gameViewRelative);
-        //mController = new GamePlayController(this, this, (GamePlayView) mGamePlayView);
-
-        Log.wtf("GamePlayActivity","before adjust");
-       //mGamePlayView.adjustSize(mColumns, mRows, mController);
-        Log.wtf("GamePlayActivity", "after adjust");
-*/
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            int board_width = 7;
-            int board_height = 6;
-            setContentView(R.layout.activity_gameplay);
-            GamePlayView boardView = (GamePlayView) findViewById ( R.id.gameView1 );
-            mController = new GamePlayController(this, boardView, board_width, board_height);
+
+            Intent intent = getIntent();
+            MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
+
+
+           // if (menuController.getBoard_size().equals("Small")) {
+                setContentView(R.layout.activity_gameplay_small);
+                GamePlayViewSmall boardView =  findViewById(R.id.gameViewSmall);
+                mController = new GamePlayController(this, boardView, menuController);
+                /*
+            } else if (menuController.getBoard_size().equals("Medium")) {
+
+                Log.wtf("GamePlayActivity","calling findViewById");
+                setContentView(R.layout.activity_gameplay_medium);
+                GamePlayViewMedium boardView =  findViewById(R.id.gameViewMedium);
+                if (boardView == null)
+                    Log.wtf("GamePlayActivity","findViewById returned null");
+                mController = new GamePlayController(this, boardView, menuController);
+
+            } else {
+                setContentView(R.layout.activity_gameplay_large);
+                GamePlayViewLarge boardView =  findViewById(R.id.gameViewLarge);
+                mController = new GamePlayController(this, boardView, menuController);
+            }
+*/
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
         }
