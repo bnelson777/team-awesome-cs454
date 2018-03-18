@@ -113,7 +113,6 @@ public class GamePlayView extends RelativeLayout {
     // Highlight a square, to indicate a winning piece
     public void highlight(int x, int y, int imageresource_id)
     {
-        //mCells[ROWS - 1 - y][x].setImageResource(imageresource_id);
         mCells[mCells.length - 1 - y][x].setImageResource(imageresource_id);
     }
 
