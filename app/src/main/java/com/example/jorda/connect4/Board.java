@@ -29,8 +29,8 @@ public class Board {
         grid = new int[columns][rows];
         tops = new int[columns];
 
-        Log.wtf("Board", "width"+width+" height"+height);
-        Log.wtf("Board","tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
+        //Log.wtf("Board", "width"+width+" height"+height);
+        //Log.wtf("Board","tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
 
         // Track heuristic score, so we can adjust it on each move,
         // Rather than recalculate the whole thing

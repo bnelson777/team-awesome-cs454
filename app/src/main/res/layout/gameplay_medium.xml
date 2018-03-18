@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/darkgrey"
     android:clipChildren="false">
 
     <include
@@ -14,7 +14,6 @@
         android:layout_height="fill_parent"
 
         android:orientation="vertical"
-        android:background="@color/darkgrey"
         android:clipChildren="false"
         android:gravity="bottom"
         android:paddingBottom="16dp"
@@ -134,60 +133,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".17"
-                android:adjustViewBounds="true" />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackground"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-        </LinearLayout>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="-2dp"
-            android:background="@color/lightgrey"
-            android:clipChildren="false">
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
                 android:adjustViewBounds="true"
                 />
 
@@ -252,60 +197,6 @@
                 android:layout_weight=".17"
                 android:adjustViewBounds="true"
                 />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true" />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackground"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-
-            <ImageView
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".17"
-                android:adjustViewBounds="true"
-                />
-        </LinearLayout>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="-2dp"
-            android:background="@color/lightgrey"
-            android:clipChildren="false">
 
             <ImageView
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -382,6 +273,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
                 android:adjustViewBounds="true" />
 
             <ImageView
@@ -430,6 +329,224 @@
             android:layout_marginBottom="-2dp"
             android:background="@color/lightgrey"
             android:clipChildren="false">
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true" />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:background="@color/lightgrey"
+            android:clipChildren="false">
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true" />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:background="@color/lightgrey"
+            android:clipChildren="false">
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true" />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-2dp"
+            android:background="@color/lightgrey"
+            android:clipChildren="false">
+
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".17"
+                android:adjustViewBounds="true"
+                />
 
             <ImageView
                 android:background="?attr/selectableItemBackgroundBorderless"
