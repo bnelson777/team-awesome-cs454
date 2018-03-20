@@ -105,14 +105,18 @@ public class GamePlayController implements View.OnClickListener {
         Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
         if (mGamePlay.placeMove(column))
             mPlayView.dropDisc(mGamePlay.free(column), column, mGamePlay.getCurrentPlayer() ? player2.piece() : player1.piece());
+        else
+            return; // Invalid move
         Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
 
         mPlayView.highlightPlayer(mGamePlay.getCurrentPlayer() ? 1 : 2);
         mPlayView.unhighlightPlayer(mGamePlay.getCurrentPlayer() ? 2 : 1);
         mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
 
-        if (mGamePlay.stalemate())
+        if (mGamePlay.stalemate()) {
             mPlayView.winMessage("Stalemate!");
+            return;
+        }
 
         if (mGamePlay.maxWon() || mGamePlay.minWon())
         {
