@@ -110,6 +110,9 @@ public class GamePlayController implements View.OnClickListener {
         mPlayView.unhighlightPlayer(mGamePlay.getCurrentPlayer() ? 2 : 1);
         mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
 
+        if (mGamePlay.stalemate())
+            mPlayView.winMessage("Stalemate!");
+
         if (mGamePlay.maxWon() || mGamePlay.minWon())
         {
             for (int i=0; i<4; i++) {
@@ -135,6 +138,10 @@ public class GamePlayController implements View.OnClickListener {
     {
         if (waitForAi)
             return;
+
+        if (mGamePlay.maxWon() || mGamePlay.minWon() || mGamePlay.stalemate()) {
+
+        }
 
         // if human, get column they clicked and playa  move there
         int column = (int)v.getX() / (int) mPlayView.getCellWidth();

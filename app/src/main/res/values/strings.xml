@@ -25,4 +25,27 @@
 
     <string name="rounds_hint">How many rounds?</string>
     <string name="default_player_2">Player 2</string>
+
+    <string name="rules_text">
+  <![CDATA[
+    Connect Four Rules<br/><br/>Two players take turns placing pieces. The winner is whoever gets four of their pieces in a row first.
+    You can play multiple rounds, and at the end of the last round your score (number of rounds won in that session) is added to the scoreboard.]]>
+    </string>
+
+    <string name="credits_text">
+  <![CDATA[
+    Connect Four Credits<br/><br/>
+    Developers: <br/>
+    <ul>
+        <li>Branden</li>
+        <li>Jordan</li>
+        <li>Soyoung</li>
+    </ul>
+    <br/>
+    Resources:<br/>
+    <ul>
+    <li><a href="https://www.youtube.com/channel/UCoNZZLhPuuRteu02rh7bzsw">CodingWithMitch</a>\'s bluetooth tutorial</li>
+    <li><a href="https://www.youtube.com/watch?v=a5vnIe6xWyk">maymee d</a>\'s rendition of the Jeopardy theme</li></ul>
+    ]]>
+    </string>
 </resources>

@@ -61,6 +61,7 @@ public class GamePlayModel {
     {
         return mBoard.minWon;
     }
+    public boolean stalemate() {return mBoard.boardFull;}
     public int winX(int i)
     {
         return mBoard.winX[i];

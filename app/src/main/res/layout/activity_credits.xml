@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fbf7f6aa"
+    tools:context="com.example.jorda.connect4.MenuActivity">
+
+                <TextView
+                    android:id="@+id/gameCredits"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#61bfad"
+                    android:gravity="center"
+                    android:text="Player 1"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu" />
+
+</android.support.constraint.ConstraintLayout>

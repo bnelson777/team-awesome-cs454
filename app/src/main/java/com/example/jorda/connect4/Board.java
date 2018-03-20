@@ -68,39 +68,112 @@ public class Board {
     {
         //Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+tops[column]+" "+boardFull+" "+maxWon+" "+minWon);
         //Log.wtf("makeMove", "tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
-        if (column < 0 || column >= columns || tops[column] == rows || boardFull || maxWon || minWon)
+        if (column < 0 || column >= columns || tops[column] == rows
+                || boardFull || maxWon || minWon)
             return -1;
         //Log.wtf("Board","moving to "+column+" "+tops[column]);
         grid[column][tops[column]] = (piece?first_player:second_player);
         tops[column]++;
 
-
+        // Check if the board is full (ie, a stalemate)
         boardFull = true;
         //Log.wtf("makeMove", "rows: "+rows+" full: "+boardFull+"bf: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
-        for (int i=0;i<tops.length;i++)
+        for (int i=0;i<tops.length && boardFull;i++)
             boardFull &= (tops[i] == rows);
         //Log.wtf("makeMove", "rows: "+rows+" full: "+boardFull+" af: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
 
-        // adjust heuristic score (max potential 4-in-rows
-        // minus potential min 4-in-rows)
+        // Check for a win, and
+        // adjust heuristic score (Max-player potential 4-in-rows
+        // minus potential Min-player 4-in-rows)
         for (int rowDir=-1; rowDir <= 1; rowDir++)
             for (int colDir=-1; colDir <=1; colDir++)
-                if (!(rowDir==0 && colDir==0)) {
+            {
+                int r = tops[column] - 1;
+                int c = column;
+                if (!(rowDir == 0 && colDir == 0))
+                {
+
+                    /*
+                     * This section checks if the piece placed was
+                     * the last in a row of four - ie, it was
+                     * on either end of the four. It is X where the winning
+                     * row is XOOX
+                     */
                     boolean tWon = true;
-                    int r = tops[column] - 1;
-                    int c = column;
+                    for (int i = 0; i < 4; i++) {
+                        if (rowDir == -1 && colDir == -1)
+                            Log.wtf("Board", "Checking at " + c + " " + r + colDir + " " + rowDir);
+                        if (!(     r < rows && r >= 0 && c < columns && c >= 0
+                                && c + i * colDir < columns && c + i * colDir >= 0
+                                && r + i * rowDir < rows && r + i * rowDir >= 0
+                                && ((piece ? first_player : second_player)
+                                        == grid[c + i * colDir][r + i * rowDir])))
+                        {
+                            if (rowDir == -1 && colDir == -1) {
+                                Log.wtf("Board", "failed on " + c + " " + r);
+                                //Log.wtf("Board", "" + " " + rows + " " + columns + " " + piece + " " + grid[c+i*colDir][r+i*rowDir]);
+                            }
+                            tWon = false;
+                            /* Explanation of heuristic score:
+                             * it is taken to be the total number of possible
+                             * 4-in-rows we can make on the board.
+                             *
+                             * If we focus on one specific direction, the number
+                             * of 4-in-rows a point X can be a part of are
+                             * XOOO,  OXOO, OOOX, or OOXO.
+                             *
+                             * Thus, when we determine a point
+                             * is not part of a winning 4-in-row in this direction,
+                             * we subtract 4 potential lines from the total -
+                             * where the total score is the number of potential
+                             * 4-in-rows we can make on this board.
+                             *
+                             * But, if one of those 'potential' 4-in-rows
+                             * overhangs the edge, it wasn't a potential anyway,
+                             * so we don't subtract it. If we've hit an opponent
+                             * piece or board edge at i distance away from X, we
+                             * can subtract i possible 4-in-rows from the four
+                             * potentials the point X could be in, in this given
+                             * direction.
+                             *
+                             * Thus the overall score lowers by (4-i)
+                             */
+                            heuristicScore -= (4 - i);
+                            break;
+                        }
+                    }
+
+                    if (tWon == true) {
+                        // populate winX[] and winY[]
+                        for (int i = 0; i < 4; i++) {
+                            winX[i] = c + i * colDir;
+                            winY[i] = r + i * rowDir;
+                        }
+
+                        maxWon = piece;
+                        minWon = !piece;
+                        heuristicScore = (piece ? 1 : -1) * columns * rows;
+                        return 0;
+                    }
+
+
+                    /*
+                     * This section checks if the piece placed was
+                     * in the middle of a row of four - ie, it was
+                     * either X of OXXO
+                     */
+                    tWon = true;
+                    r = (tops[column] - 1) - rowDir;
+                    c = column - colDir;
+                    //Log.wtf("Board", "Checking at " + c + " " + r + " in " + colDir + " " + rowDir);
                     for (int i = 0; i < 4; i++) {
                         //Log.wtf("wincheck: ", "piece: "+piece+" "+(c+i*colDir)+ " "+(r+i*rowDir) );
-                        if (r < rows && r >= 0 && c < columns && c >= 0
+                        if (!(     r < rows && r >= 0 && c < columns && c >= 0
                                 && c + i * colDir < columns && c + i * colDir >= 0
-                                && r + i * rowDir < rows && r + i * rowDir >= 0) {
-                            //Log.wtf("wincheck: ", "grid: "+grid[c + i * colDir][r + i * rowDir]);
-                            if ((piece ? first_player : second_player) != grid[c + i * colDir][r + i * rowDir]) {
-                                tWon = false;
-                                heuristicScore -= (4 - i);
-                                break;
-                            }
-                        } else {
+                                && r + i * rowDir < rows && r + i * rowDir >= 0
+                                && ((piece ? first_player : second_player)
+                                        == grid[c + i * colDir][r + i * rowDir])))
+                        {
                             tWon = false;
                             heuristicScore -= (4 - i);
                             break;
@@ -109,20 +182,18 @@ public class Board {
 
                     if (tWon == true) {
                         // populate winX[] and winY[]
-                        for (int i=0; i<4; i++)
-                        {
-                            winX[i] = c+i*colDir;
-                            winY[i] = r+i*rowDir;
+                        for (int i = 0; i < 4; i++) {
+                            winX[i] = c + i * colDir;
+                            winY[i] = r + i * rowDir;
                         }
-                        if (piece) {
-                            maxWon = true;
-                            heuristicScore = columns*rows;
-                        } else {
-                            minWon = true;
-                            heuristicScore = -1*columns*rows;
-                        }
+
+                        maxWon = piece;
+                        minWon = !piece;
+                        heuristicScore = (piece ? 1 : -1) * columns * rows;
+                        return 0;
                     }
                 }
+            }
 
         return 0; // return 0 for no errors
     }
