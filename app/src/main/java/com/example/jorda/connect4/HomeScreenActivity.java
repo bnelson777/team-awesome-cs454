@@ -3,6 +3,7 @@ package com.example.jorda.connect4;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class HomeScreenActivity extends AppCompatActivity {
     private Button localGame;
     private Button onlineGame;
     private Button highScores;
+    private Button rules;
+    private Button credits;
     private TextView welcomeText;
     private FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -27,12 +30,15 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.wtf("HOmeScreen", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         localGame = findViewById(R.id.btnLocalGame);
         onlineGame = findViewById(R.id.btnOnlineGame);
         highScores = findViewById(R.id.btnHighScores);
         welcomeText = findViewById(R.id.tvWelcome);
+        rules = findViewById(R.id.btnRules);
+        credits = findViewById(R.id.btnCredits);
 
         String uid = firebaseAuth.getCurrentUser().getUid();
         DatabaseReference reference = mDatabase.getReference().child("users/" + uid + "/name");
@@ -71,6 +77,20 @@ public class HomeScreenActivity extends AppCompatActivity {
                 i.putExtra("player1", player1.getName());
                 startActivity(i);
                 finish();
+            }
+        });
+        rules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.wtf("HomeScreenActivity","starting Rules");
+                startActivity(new Intent(HomeScreenActivity.this, RulesActivity.class));
+            }
+        });
+        credits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.wtf("Homescreenactivity", "starting credits");
+                startActivity(new Intent(HomeScreenActivity.this, CreditsActivity.class));
             }
         });
     }

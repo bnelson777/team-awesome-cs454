@@ -61,6 +61,15 @@
 
         </LinearLayout>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:text="Toggle Music"
+            android:id="@+id/musicToggle" />
+
         <LinearLayout
 
             android:layout_width="wrap_content"
@@ -119,8 +128,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="winniethepooh" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/winner_text"
@@ -131,7 +139,6 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="hello" />
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -62,6 +62,8 @@
         <activity android:name=".OnlineActivity" />
         <activity android:name=".DemoGameActivity" />
         <activity android:name=".HighScoreActivity"></activity>
+        <activity android:name=".RulesActivity" />
+        <activity android:name=".CreditsActivity" />
     </application>
 
 </manifest>
