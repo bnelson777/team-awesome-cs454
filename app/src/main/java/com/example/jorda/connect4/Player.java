@@ -47,7 +47,7 @@ public class Player implements Serializable{
 
 
 
-    int getMove(Board in)
+    public int getMove(Board in)
     {
         return -1;
     }

@@ -66,7 +66,7 @@ public class Board {
 
     public int makeMove(int column, boolean piece)
     {
-        //Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+tops[column]+" "+boardFull+" "+maxWon+" "+minWon);
+        //Log.wtf("makeMove", " checking: "+column+" "+columns+" "+rows+" "+" "+boardFull+" "+maxWon+" "+minWon);
         //Log.wtf("makeMove", "tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
         if (column < 0 || column >= columns || tops[column] == rows || boardFull || maxWon || minWon)
             return -1;

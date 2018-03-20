@@ -17,8 +17,31 @@ public class AiPlayer extends Player {
         type = "AI";
     }
 
-    int getMove() {
-        return thinkingBoard.alphabeta(mDifficulty, maximizingPlayer);
+    @Override
+    public int getMove(Board in)
+    {
+        /*
+         * Create a virtual board for each possible move.
+         * Run alphabeta on each virtual board, and save
+         * the score values it gives for each board.
+         * Then find the max of those scores.
+         * Then return the move with the max score.
+         */
+        thinkingBoard = new Board(in);
+        Board[] moveBoards = new Board[thinkingBoard.columns];
+        int[] moves = new int[thinkingBoard.columns];
+
+        for (int i=0; i<moves.length; i++)
+            moveBoards[i] = new Board(thinkingBoard.simulateMove(i, maximizingPlayer));
+        for (int i=0; i<moves.length; i++)
+            moves[i] = moveBoards[i].alphabeta(mDifficulty, maximizingPlayer);
+
+        int column = 0;
+        for (int i=0; i<moves.length; i++)
+            if (moves[i] > moves[column])
+                column = i;
+
+        return column;
     }
 
 
