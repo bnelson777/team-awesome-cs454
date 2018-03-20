@@ -21,7 +21,6 @@ public class GamePlayView extends RelativeLayout {
         public final TextView name;
         @NonNull
         public final ImageView disc;
-        public final View turnIndicator;
         public final int piece;
         public final int winPiece;
 
@@ -30,12 +29,9 @@ public class GamePlayView extends RelativeLayout {
             disc = findViewById(player_disc_id);
             piece = player_piece;
             winPiece = player_win_piece;
-            turnIndicator = null;
         }
     }
 
-    private int COLS;
-    private int ROWS;
     private GamePlayController mListener;
     public PlayerInformation mPlayer1; //changed it to be public
     public PlayerInformation mPlayer2;
@@ -45,42 +41,37 @@ public class GamePlayView extends RelativeLayout {
     protected TextView mRoundView;
     protected Context mContext;
 
-    public GamePlayView(Context context) {
+    public GamePlayView(Context context)
+    {
         super(context);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs) {
+    public GamePlayView(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
     }
 
-    public GamePlayView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public GamePlayView(Context context, AttributeSet attrs, int defStyleAttr)
+    {
         super(context, attrs, defStyleAttr);
     }
 
     public void initialize(GamePlayController gamePlayController,  int cols_in, int rows_in, int p1piece, int p1winPiece, int p2piece, int p2winPiece) {
-        mBoardView = findViewById(R.id.gameplaySmall);
         mWinnerView = findViewById(R.id.winner_text);
         mRoundView = findViewById(R.id.current_round_text);
         mPlayer1 = new PlayerInformation(R.id.player1_name, R.id.player1_disc, p1piece, p1winPiece);
         mPlayer2 = new PlayerInformation(R.id.player2_name, R.id.player2_disc, p2piece, p2winPiece);
+        mListener = gamePlayController;
 
-        this.COLS = cols_in;
-        this.ROWS = rows_in;
-        this.mListener = gamePlayController;
         highlightPlayer(1);
         unhighlightPlayer(2);
-        buildCells();
-    }
 
-    /**
-     * build and clear board mCells
-     */
-    private void buildCells() {
-        mCells = new ImageView[ROWS][COLS];
-        for (int r = 0; r < ROWS; r++) {
+        // Get a grid of image views for all the board cells
+        mCells = new ImageView[rows_in][cols_in];
+        for (int r = 0; r < rows_in; r++) {
             ViewGroup row = (ViewGroup) ((ViewGroup) mBoardView).getChildAt(r);
             row.setClipChildren(false);
-            for (int c = 0; c < COLS; c++) {
+            for (int c = 0; c < cols_in; c++) {
                 ImageView imageView = (ImageView) row.getChildAt(c);
                 imageView.setImageResource(android.R.color.transparent);
                 imageView.setOnClickListener(mListener);
@@ -122,7 +113,6 @@ public class GamePlayView extends RelativeLayout {
     // Highlight a square, to indicate a winning piece
     public void highlight(int x, int y, int imageresource_id)
     {
-        //mCells[ROWS - 1 - y][x].setImageResource(imageresource_id);
         mCells[mCells.length - 1 - y][x].setImageResource(imageresource_id);
     }
 

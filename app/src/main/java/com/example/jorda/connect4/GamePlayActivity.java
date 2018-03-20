@@ -19,23 +19,17 @@ public class GamePlayActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
             Intent intent = getIntent();
             MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
 
-
-           // if (menuController.getBoard_size().equals("Small")) {
+            if (menuController.getBoard_size().equals("Small")) {
                 setContentView(R.layout.activity_gameplay_small);
                 GamePlayViewSmall boardView =  findViewById(R.id.gameViewSmall);
                 mController = new GamePlayController(this, boardView, menuController);
-                /*
-            } else if (menuController.getBoard_size().equals("Medium")) {
 
-                Log.wtf("GamePlayActivity","calling findViewById");
+            } else if (menuController.getBoard_size().equals("Medium")) {
                 setContentView(R.layout.activity_gameplay_medium);
                 GamePlayViewMedium boardView =  findViewById(R.id.gameViewMedium);
-                if (boardView == null)
-                    Log.wtf("GamePlayActivity","findViewById returned null");
                 mController = new GamePlayController(this, boardView, menuController);
 
             } else {
@@ -43,7 +37,7 @@ public class GamePlayActivity extends AppCompatActivity {
                 GamePlayViewLarge boardView =  findViewById(R.id.gameViewLarge);
                 mController = new GamePlayController(this, boardView, menuController);
             }
-*/
+
             //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_close);
         }

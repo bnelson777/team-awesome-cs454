@@ -38,7 +38,7 @@ public class Player implements Serializable{
     Player( boolean maxPlayer, int piece_resource, int win_piece_resource, String name_in)
     {
         maximizingPlayer = maxPlayer;
-        Log.wtf("Player saving",""+piece_resource+" "+"win_piece_resource");
+        //Log.wtf("Player saving",""+piece_resource+" "+"win_piece_resource");
         mPieceResource = piece_resource;
         mWinPieceResource = win_piece_resource;
         type = "Human";

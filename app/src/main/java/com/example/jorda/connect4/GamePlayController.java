@@ -31,7 +31,7 @@ public class GamePlayController implements View.OnClickListener {
 
         p1_piece = (menu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_white : R.drawable.player_piece_black);
-        Log.wtf("controller","White? "+(menu.getPlayer1_color().equals("White") ? "w" : "b"));
+        //Log.wtf("controller","White? "+(menu.getPlayer1_color().equals("White") ? "w" : "b"));
 
         p1_win_piece = menu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_win_white : R.drawable.player_piece_win_black;
@@ -43,6 +43,7 @@ public class GamePlayController implements View.OnClickListener {
                 R.drawable.player_piece_win_white : R.drawable.player_piece_win_black;
 
         if (mPlayView != null) {
+            Log.wtf("controller","calling initialize");
             mPlayView.initialize(this, menu.getBoard_column(), menu.getBoard_row(), p1_piece, p1_win_piece, p2_piece, p2_win_piece);
             mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
         }
@@ -63,7 +64,7 @@ public class GamePlayController implements View.OnClickListener {
         }
         else { //local human
             Log.wtf("gpcont","human player");
-            Log.wtf("gp cont" ,""+p1_piece+" "+p1_win_piece+" "+R.drawable.player_piece_white+" "+R.drawable.player_piece_win_white);
+            //Log.wtf("gp cont" ,""+p1_piece+" "+p1_win_piece+" "+R.drawable.player_piece_white+" "+R.drawable.player_piece_win_white);
             player1 = new Player(true, p1_piece, p1_win_piece, "testname");
             waitForAi = false;
         }
@@ -110,6 +111,9 @@ public class GamePlayController implements View.OnClickListener {
         mPlayView.unhighlightPlayer(mGamePlay.getCurrentPlayer() ? 2 : 1);
         mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
 
+        if (mGamePlay.stalemate())
+            mPlayView.winMessage("Stalemate!");
+
         if (mGamePlay.maxWon() || mGamePlay.minWon())
         {
             for (int i=0; i<4; i++) {
@@ -140,6 +144,10 @@ public class GamePlayController implements View.OnClickListener {
     {
         if (waitForAi)
             return;
+
+        if (mGamePlay.maxWon() || mGamePlay.minWon() || mGamePlay.stalemate()) {
+
+        }
 
         // if human, get column they clicked and playa  move there
         int column = (int)v.getX() / (int) mPlayView.getCellWidth();

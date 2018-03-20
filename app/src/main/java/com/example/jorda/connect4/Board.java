@@ -29,8 +29,8 @@ public class Board {
         grid = new int[columns][rows];
         tops = new int[columns];
 
-        Log.wtf("Board", "width"+width+" height"+height);
-        Log.wtf("Board","tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
+        //Log.wtf("Board", "width"+width+" height"+height);
+        //Log.wtf("Board","tops: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
 
         // Track heuristic score, so we can adjust it on each move,
         // Rather than recalculate the whole thing
@@ -86,6 +86,12 @@ public class Board {
         for (int rowDir=-1; rowDir <= 1; rowDir++)
             for (int colDir=-1; colDir <=1; colDir++)
                 if (!(rowDir==0 && colDir==0)) {
+
+                    /*
+                     * This section checks if the piece placed was
+                     * the last in a row of four - ie, it was
+                     * on either end of the four
+                     */
                     boolean tWon = true;
                     int r = tops[column] - 1;
                     int c = column;
@@ -95,6 +101,50 @@ public class Board {
                                 && c + i * colDir < columns && c + i * colDir >= 0
                                 && r + i * rowDir < rows && r + i * rowDir >= 0) {
                             //Log.wtf("wincheck: ", "grid: "+grid[c + i * colDir][r + i * rowDir]);
+                            if ((piece ? first_player : second_player) != grid[c + i * colDir][r + i * rowDir]) {
+                                tWon = false;
+                                heuristicScore -= (4 - i);
+                                break;
+                            }
+                        } else {
+                            tWon = false;
+                            heuristicScore -= (4 - i);
+                            break;
+                        }
+                    }
+
+                    if (tWon == true) {
+                        // populate winX[] and winY[]
+                        for (int i=0; i<4; i++)
+                        {
+                            winX[i] = c+i*colDir;
+                            winY[i] = r+i*rowDir;
+                        }
+                        if (piece) {
+                            maxWon = true;
+                            heuristicScore = columns*rows;
+                        } else {
+                            minWon = true;
+                            heuristicScore = -1*columns*rows;
+                        }
+                    }
+
+
+                    /*
+                     * This section checks if the piece placed was
+                     * in the middle of a row of four - ie, it was
+                     * either X of OXXO
+                     */
+                    tWon = true;
+                    r = (tops[column] - 1) - rowDir;
+                    c = column - colDir;
+                    Log.wtf("Board","Checking at "+c+" "+r+" in "+colDir+" "+rowDir);
+                    for (int i = 0; i < 4; i++) {
+                        //Log.wtf("wincheck: ", "piece: "+piece+" "+(c+i*colDir)+ " "+(r+i*rowDir) );
+                        if (r < rows && r >= 0 && c < columns && c >= 0
+                                && c + i * colDir < columns && c + i * colDir >= 0
+                                && r + i * rowDir < rows && r + i * rowDir >= 0) {
+                            Log.wtf("wincheck: ", "player: "+first_player+"grid: "+(c+i*colDir)+" "+(r+i*rowDir)+" "+grid[c + i * colDir][r + i * rowDir]);
                             if ((piece ? first_player : second_player) != grid[c + i * colDir][r + i * rowDir]) {
                                 tWon = false;
                                 heuristicScore -= (4 - i);

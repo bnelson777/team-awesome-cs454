@@ -2,15 +2,13 @@ package com.example.jorda.connect4;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
+import android.util.Log;
 
 /**
  * Created by school on 2/28/2018.
  */
 
 public class GamePlayViewSmall extends GamePlayView {
-    //protected View mBoardView;
-
     public GamePlayViewSmall(Context context) {
         super(context);
         init(context);
@@ -30,5 +28,4 @@ public class GamePlayViewSmall extends GamePlayView {
         inflate(context, R.layout.gameplay_small, this);
         mBoardView = findViewById(R.id.gameplaySmall);
     }
-
 }

@@ -24,10 +24,8 @@ public class MenuController implements Serializable{
     private int Board_row;
     private int Board_column;
 
-
     public MenuController() {
     }
-
 
     public void setBoard_rows_columns(){
         if(Board_size.equals("Small")) {
