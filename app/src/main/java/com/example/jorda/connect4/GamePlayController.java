@@ -102,16 +102,22 @@ public class GamePlayController implements View.OnClickListener {
 
     private void doMove(int column)
     {
-        //Log.wtf("doMove", ""+(mGamePlay.getCurrentPlayer() ? player1.piece() : player2.piece()));
+        //Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
         if (mGamePlay.placeMove(column))
             mPlayView.dropDisc(mGamePlay.free(column), column, mGamePlay.getCurrentPlayer() ? player2.piece() : player1.piece());
+        else
+            return; // Invalid move
+        //Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
 
+        Log.wtf("Controller", "highlighting "+mGamePlay.getCurrentPlayer());
         mPlayView.highlightPlayer(mGamePlay.getCurrentPlayer() ? 1 : 2);
         mPlayView.unhighlightPlayer(mGamePlay.getCurrentPlayer() ? 2 : 1);
         mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
 
-        if (mGamePlay.stalemate())
+        if (mGamePlay.stalemate()) {
             mPlayView.winMessage("Stalemate!");
+            return;
+        }
 
         if (mGamePlay.maxWon() || mGamePlay.minWon())
         {
@@ -123,11 +129,16 @@ public class GamePlayController implements View.OnClickListener {
                 mPlayView.winMessage("Player1 wins!");
             if (mGamePlay.minWon())
                 mPlayView.winMessage("Player 2 wins!");
+            return; // don't execute ai move if game has ended
         }
 
         if (mGamePlay.getCurrentPlayer() ? player1.isAi() : player2.isAi()) {
+            //Log.wtf("GamePlayController",""+mGamePlay.getCurrentPlayer() + " " + player1.isAi() + " " + player2.isAi());
             waitForAi = true;
+            //Log.wtf("gameplaycontroller", "getting Ai move");
             int nextplayermove = mGamePlay.getCurrentPlayer() ? player1.getMove(mGamePlay.getBoard()) : player2.getMove(mGamePlay.getBoard());
+            //Log.wtf("gameplaycontroller", ""+mGamePlay.getCurrentPlayer());
+            //Log.wtf("gameplaycontroller", "got ai move");
             waitForAi = false;
             doMove(nextplayermove);
         }
