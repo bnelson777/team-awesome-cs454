@@ -45,6 +45,7 @@ public class GamePlayActivity extends AppCompatActivity {
             musicToggle = findViewById(R.id.musicToggle);
             mp=MediaPlayer.create(getApplicationContext(),R.raw.jeopardy);// the song is a filename which i have pasted inside a folder **raw** created under the **res** folder.//
             mp.start();
+            mp.setLooping(true);
 
             musicToggle.setOnClickListener(new View.OnClickListener() {
                 @Override
