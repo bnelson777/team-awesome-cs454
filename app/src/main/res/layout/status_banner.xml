@@ -16,27 +16,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:gravity="center"
             android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/player1_disc"
-                    android:layout_width="@dimen/player_indicator_image_size"
-                    android:layout_height="@dimen/player_indicator_image_size"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="13dp"
-                    android:src="@drawable/player_piece_white" />
-
-            </RelativeLayout>
 
             <TextView
                 android:id="@+id/player1_name"
@@ -44,9 +28,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
+                android:text="player1"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="34dp">
+
+                <ImageView
+                    android:id="@+id/player1_disc"
+                    android:layout_width="@dimen/player_indicator_image_size"
+                    android:layout_height="@dimen/player_indicator_image_size"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/player_piece_white" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/player1_score"
@@ -65,24 +66,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:gravity="center"
             android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/player2_disc"
-                    android:layout_width="@dimen/player_indicator_image_size"
-                    android:layout_height="@dimen/player_indicator_image_size"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="12dp"
-                    android:src="@drawable/player_piece_black" />
-
-            </RelativeLayout>
 
             <TextView
                 android:id="@+id/player2_name"
@@ -90,14 +76,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
+                android:text="player1"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="34dp">
+
+                <ImageView
+                    android:id="@+id/player2_disc"
+                    android:layout_width="@dimen/player_indicator_image_size"
+                    android:layout_height="@dimen/player_indicator_image_size"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/player_piece_black" />
+
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/player2_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:textColor="@android:color/white"

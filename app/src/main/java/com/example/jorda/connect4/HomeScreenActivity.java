@@ -55,7 +55,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         localGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeScreenActivity.this, MenuActivity.class));
+                //startActivity(new Intent(HomeScreenActivity.this, MenuActivity.class));
+                Intent i = new Intent(HomeScreenActivity.this, MenuActivity.class);
+                i.putExtra("player1", player1.getName());
+                startActivity(i);
+                finish();
             }
         });
         onlineGame.setOnClickListener(new View.OnClickListener() {

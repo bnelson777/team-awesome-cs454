@@ -1,6 +1,7 @@
 package com.example.jorda.connect4;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -15,48 +16,61 @@ public class GamePlayController implements View.OnClickListener {
 
     private GamePlayModel mGamePlay;
     private GamePlayView mPlayView;
+    private MenuController mMenu;
     boolean waitForAi;
 
     Player player1;
     Player player2;
+    private String player1_name;
+    int row1;
+    int column1;
+    int Num_rounds;
 
-    public GamePlayController(Context context, GamePlayView PlayView_in, MenuController menu) {
+    public GamePlayController(Context context, GamePlayView PlayView_in, MenuController menu, String Player_name) {
         mContext = context;
-        mGamePlay = new GamePlayModel(menu.getBoard_column(), menu.getBoard_row(), menu.getNum_rounds());
         mPlayView = PlayView_in;
+        mMenu = menu;
+        player1_name = Player_name;
+        row1=menu.getBoard_row();
+        column1=menu.getBoard_column();
+        Num_rounds=menu.getNum_rounds();
+        initialize();
+    }
 
+    private void initialize(){
+        mGamePlay = new GamePlayModel(row1, column1, Num_rounds);
         // Get player types and colors from menu
         int p1_piece, p1_win_piece, p1_difficulty;
         int p2_piece, p2_win_piece, p2_difficulty;
 
-        p1_piece = (menu.getPlayer1_color().equals("White") ?
+        p1_piece = (mMenu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_white : R.drawable.player_piece_black);
-        //Log.wtf("controller","White? "+(menu.getPlayer1_color().equals("White") ? "w" : "b"));
+        Log.wtf("controller","Came in!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-        p1_win_piece = menu.getPlayer1_color().equals("White") ?
+        p1_win_piece = mMenu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_win_white : R.drawable.player_piece_win_black;
 
-        p2_piece = menu.getPlayer2_color().equals("White") ?
+        p2_piece = mMenu.getPlayer2_color().equals("White") ?
                 R.drawable.player_piece_white : R.drawable.player_piece_black;
 
-        p2_win_piece = menu.getPlayer2_color().equals("White") ?
+        p2_win_piece = mMenu.getPlayer2_color().equals("White") ?
                 R.drawable.player_piece_win_white : R.drawable.player_piece_win_black;
 
         if (mPlayView != null) {
             Log.wtf("controller","calling initialize");
-            mPlayView.initialize(this, menu.getBoard_column(), menu.getBoard_row(), p1_piece, p1_win_piece, p2_piece, p2_win_piece);
+            mPlayView.initialize(this, mMenu.getBoard_column(), mMenu.getBoard_row(), p1_piece, p1_win_piece, p2_piece, p2_win_piece);
             mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
         }
 
-        p1_difficulty = menu.getPlayer1_difficulty().equals("Easy") ? 3 :
-                menu.getPlayer1_difficulty().equals("Medium") ? 5 : 7;
+        p1_difficulty = mMenu.getPlayer1_difficulty().equals("Easy") ? 3 :
+                mMenu.getPlayer1_difficulty().equals("Medium") ? 5 : 7;
 
-        p2_difficulty = menu.getPlayer2_difficulty().equals("Easy") ? 3 :
-                menu.getPlayer1_difficulty().equals("Medium") ? 5 : 7;
+        p2_difficulty = mMenu.getPlayer2_difficulty().equals("Easy") ? 3 :
+                mMenu.getPlayer1_difficulty().equals("Medium") ? 5 : 7;
 
-        if (menu.getPlayer1().equals("Network")) {
+        if (mMenu.getPlayer1().equals("Network")) {
             waitForAi = false;
-        } else if (menu.getPlayer1().equals("Robot overlord"))
+        } else if (mMenu.getPlayer1().equals("Robot overlord"))
         {
             Log.wtf("game controller","setting p1 to AI");
             player1 = new AiPlayer(true,mGamePlay.getBoard(), p1_piece, p1_win_piece, "testname", p1_difficulty);
@@ -69,9 +83,9 @@ public class GamePlayController implements View.OnClickListener {
             waitForAi = false;
         }
 
-        if (menu.getPlayer2().equals("Network")) {
+        if (mMenu.getPlayer2().equals("Network")) {
 
-        } else if (menu.getPlayer2().equals("Robot overlord"))
+        } else if (mMenu.getPlayer2().equals("Robot overlord"))
         {
             Log.wtf("game controller","setting p2 to AI");
             player2 = new AiPlayer(true, mGamePlay.getBoard(), p2_piece, p2_win_piece, "testname", p2_difficulty);
@@ -90,9 +104,9 @@ public class GamePlayController implements View.OnClickListener {
         }
 
 
-        String playerName1 = "John";
-        String playerName2 = "Jacob";
-        ((TextView) mPlayView.findViewById(R.id.player1_name)).setText(playerName1);
+        //String playerName1 = "John";
+        String playerName2 = "Player2";
+        ((TextView) mPlayView.findViewById(R.id.player1_name)).setText(player1_name);
         //Log.wtf("controller:","player1name: "+R.id.player1_name);
         ((TextView) mPlayView.findViewById(R.id.player1_score)).setText(Integer.toString(mGamePlay.getPlayer1_score()));
         ((TextView) mPlayView.findViewById(R.id.player2_name)).setText(playerName2);
@@ -117,9 +131,24 @@ public class GamePlayController implements View.OnClickListener {
                         (mGamePlay.maxWon() ? player1.winPiece() : player2.winPiece()));
             }
             if (mGamePlay.maxWon())
-                mPlayView.winMessage("Player1 wins!");
+                mPlayView.winMessage(player1_name+" wins!");
             if (mGamePlay.minWon())
                 mPlayView.winMessage("Player 2 wins!");
+
+
+
+            final Handler handler = new Handler(); //added by soyoung
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Do something after 5s = 5000ms
+                    //mPlayView.resetDiscs(row1, column1);
+                    mPlayView.winMessage("");
+                    initialize();
+                }
+            }, 3000);
+
         }
 
         if (mGamePlay.getCurrentPlayer() ? player1.isAi() : player2.isAi()) {
@@ -135,9 +164,13 @@ public class GamePlayController implements View.OnClickListener {
     {
         if (waitForAi)
             return;
+        Log.wtf("game controller","onClick");
 
         // if human, get column they clicked and playa  move there
+
         int column = (int)v.getX() / (int) mPlayView.getCellWidth();
+        Log.wtf("getCellWidth", mPlayView.getCellWidth()+" ");
+        Log.wtf("column", column+" ");
         doMove(column);
     }
 }
