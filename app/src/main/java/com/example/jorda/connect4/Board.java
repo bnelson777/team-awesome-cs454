@@ -78,7 +78,7 @@ public class Board {
         boardFull = true;
         //Log.wtf("makeMove", "rows: "+rows+" full: "+boardFull+"bf: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
         for (int i=0;i<tops.length;i++)
-            boardFull &= (tops[i] == rows);
+            boardFull = boardFull && (tops[i] == rows);
         //Log.wtf("makeMove", "rows: "+rows+" full: "+boardFull+" af: "+tops[0]+tops[1]+tops[2]+tops[3]+tops[4]+tops[5]+tops[6]);
 
         // adjust heuristic score (max potential 4-in-rows

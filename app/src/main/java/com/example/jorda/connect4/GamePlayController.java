@@ -102,13 +102,14 @@ public class GamePlayController implements View.OnClickListener {
 
     private void doMove(int column)
     {
-        Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
+        //Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
         if (mGamePlay.placeMove(column))
             mPlayView.dropDisc(mGamePlay.free(column), column, mGamePlay.getCurrentPlayer() ? player2.piece() : player1.piece());
         else
             return; // Invalid move
-        Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
+        //Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
 
+        Log.wtf("Controller", "highlighting "+mGamePlay.getCurrentPlayer());
         mPlayView.highlightPlayer(mGamePlay.getCurrentPlayer() ? 1 : 2);
         mPlayView.unhighlightPlayer(mGamePlay.getCurrentPlayer() ? 2 : 1);
         mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
@@ -132,12 +133,12 @@ public class GamePlayController implements View.OnClickListener {
         }
 
         if (mGamePlay.getCurrentPlayer() ? player1.isAi() : player2.isAi()) {
-            Log.wtf("GamePlayController",""+mGamePlay.getCurrentPlayer() + " " + player1.isAi() + " " + player2.isAi());
+            //Log.wtf("GamePlayController",""+mGamePlay.getCurrentPlayer() + " " + player1.isAi() + " " + player2.isAi());
             waitForAi = true;
-            Log.wtf("gameplaycontroller", "getting Ai move");
+            //Log.wtf("gameplaycontroller", "getting Ai move");
             int nextplayermove = mGamePlay.getCurrentPlayer() ? player1.getMove(mGamePlay.getBoard()) : player2.getMove(mGamePlay.getBoard());
-            Log.wtf("gameplaycontroller", ""+mGamePlay.getCurrentPlayer());
-            Log.wtf("gameplaycontroller", "got ai move");
+            //Log.wtf("gameplaycontroller", ""+mGamePlay.getCurrentPlayer());
+            //Log.wtf("gameplaycontroller", "got ai move");
             waitForAi = false;
             doMove(nextplayermove);
         }
