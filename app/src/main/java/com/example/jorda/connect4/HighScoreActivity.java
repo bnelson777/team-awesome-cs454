@@ -2,15 +2,18 @@ package com.example.jorda.connect4;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HighScoreActivity extends AppCompatActivity {
 
     TextView tv_score;
+    Button btnClear;
 
     int lastScore;
     int best1, best2, best3;
@@ -23,6 +26,7 @@ public class HighScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_high_score);
 
         tv_score = findViewById(R.id.tv_score);
+        btnClear = findViewById(R.id.btnClear);
 
         Intent i = getIntent();
         currentPlayer = i.getStringExtra("player1");
@@ -127,6 +131,19 @@ public class HighScoreActivity extends AppCompatActivity {
                 "1. : " + p1 + ": " + best1 + "\n" +
                 "2. : " + p2 + ": " + best2 + "\n" +
                 "3. : " + p3 + ": " + best3);
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("PREFS", 0);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear().apply();
+                tv_score.setText("LAST GAME- " + currentPlayer + ": " + lastScore + "\n" +
+                        "1. : - : 0\n" +
+                        "2. : - : 0\n" +
+                        "3. : - : 0\n");
+            }
+        });
 
 
 
