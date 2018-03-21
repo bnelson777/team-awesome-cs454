@@ -45,7 +45,7 @@ public class GamePlayController implements View.OnClickListener {
 
         p1_piece = (mMenu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_white : R.drawable.player_piece_black);
-        Log.wtf("controller","Came in!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //Log.wtf("controller","Came in!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         p1_win_piece = mMenu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_win_white : R.drawable.player_piece_win_black;
@@ -59,7 +59,9 @@ public class GamePlayController implements View.OnClickListener {
         if (mPlayView != null) {
             Log.wtf("controller","calling initialize");
             mPlayView.initialize(this, mMenu.getBoard_column(), mMenu.getBoard_row(), p1_piece, p1_win_piece, p2_piece, p2_win_piece);
-            mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
+            //mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
+            mPlayView.showRounds(mMenu.getNum_rounds()-Num_rounds+1, mMenu.getNum_rounds());
+
         }
 
         p1_difficulty = mMenu.getPlayer1_difficulty().equals("Easy") ? 3 :
@@ -116,13 +118,17 @@ public class GamePlayController implements View.OnClickListener {
 
     private void doMove(int column)
     {
-        //Log.wtf("doMove", ""+(mGamePlay.getCurrentPlayer() ? player1.piece() : player2.piece()));
-        if (mGamePlay.placeMove(column))
+        //Log.wtf("placeMove : ", ""+mGamePlay.placeMove(column));
+        if (mGamePlay.placeMove(column)) {
+            //Log.wtf("dropDisc 3", ""+mGamePlay.free(column)+" row : col "+mGamePlay.free(column));
             mPlayView.dropDisc(mGamePlay.free(column), column, mGamePlay.getCurrentPlayer() ? player2.piece() : player1.piece());
-
+            //mPlayView.dropDisc(mGamePlay.free(column), column, mGamePlay.getCurrentPlayer() ? player2.piece() : player1.piece());
+        }
         mPlayView.highlightPlayer(mGamePlay.getCurrentPlayer() ? 1 : 2);
         mPlayView.unhighlightPlayer(mGamePlay.getCurrentPlayer() ? 2 : 1);
-        mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
+        //mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
+        //mPlayView.showRounds(Num_rounds, mMenu.getNum_rounds());
+        mPlayView.showRounds(mMenu.getNum_rounds()-Num_rounds+1, mMenu.getNum_rounds());
 
         if (mGamePlay.maxWon() || mGamePlay.minWon())
         {
@@ -135,19 +141,20 @@ public class GamePlayController implements View.OnClickListener {
             if (mGamePlay.minWon())
                 mPlayView.winMessage("Player 2 wins!");
 
+            Num_rounds--;
+            if(Num_rounds>0){
+                final Handler handler = new Handler(); //added by soyoung
 
-
-            final Handler handler = new Handler(); //added by soyoung
-
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Do something after 5s = 5000ms
-                    //mPlayView.resetDiscs(row1, column1);
-                    mPlayView.winMessage("");
-                    initialize();
-                }
-            }, 3000);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+                        //mPlayView.resetDiscs(row1, column1);
+                        mPlayView.winMessage("");
+                        initialize();
+                    }
+                }, 3000);
+            }
 
         }
 
@@ -171,6 +178,9 @@ public class GamePlayController implements View.OnClickListener {
         int column = (int)v.getX() / (int) mPlayView.getCellWidth();
         Log.wtf("getCellWidth", mPlayView.getCellWidth()+" ");
         Log.wtf("column", column+" ");
-        doMove(column);
+        if(Num_rounds>0){
+            doMove(column);
+        }
+
     }
 }

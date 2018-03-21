@@ -85,11 +85,13 @@ public class GamePlayView extends RelativeLayout {
         int row1 = row-1;
         int col2 = col;
         Log.wtf("dropDisc 2 ",row1+" : "+col2);
-        final ImageView cell = mCells[row1][col2];
-        float move = -(cell.getHeight() * row1 + cell.getHeight() + 15);
-        cell.setY(move);
-        cell.setImageResource(resource);
-        cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
+        if(row1>=0) {
+            final ImageView cell = mCells[row1][col2];
+            float move = -(cell.getHeight() * row1 + cell.getHeight() + 15);
+            cell.setY(move);
+            cell.setImageResource(resource);
+            cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
+        }
     }
 
     public void resetDiscs(int row, int col) {
@@ -135,7 +137,11 @@ public class GamePlayView extends RelativeLayout {
 
     public void showRounds(int current, int total)
     {
-        mRoundView.setText(""+current+"/"+total);
+        if(total==1){
+            mRoundView.setText("Round "+current+" / Total "+total+" Round");
+        }else{
+            mRoundView.setText("Round "+current+" / Total "+total+" Rounds");
+        }
     }
 
     public void winMessage(String message)

@@ -25,6 +25,7 @@ public class Board {
 
     public Board(int width, int height) {
         columns = width;
+        columns++;//Soyoung added
         rows = height;
         grid = new int[columns][rows];
         tops = new int[columns];
@@ -48,6 +49,10 @@ public class Board {
         this.boardFull = in.boardFull;
 
         this.columns = in.columns;
+
+        columns++;//Soyoung added
+
+
         this.rows = in.rows;
         this.tops = in.tops.clone();
         this.grid = new int[in.grid.length][];
