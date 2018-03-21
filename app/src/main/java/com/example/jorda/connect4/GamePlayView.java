@@ -95,6 +95,18 @@ public class GamePlayView extends RelativeLayout {
 
     }
 
+    public void resetDiscs(int row, int col) {
+        for(int i=0; i<row; i++){
+            for(int j=0; j<col; j++){
+                final ImageView cell = mCells[i][j];
+                float move = -(cell.getHeight() * row + cell.getHeight() + 15);
+                cell.setY(move);
+                //cell.setImageResource(android.R.color.transparent);
+            }
+        }
+        //cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
+    }
+
     public float getCellWidth() {
         return mCells[0][0].getWidth();
     }
