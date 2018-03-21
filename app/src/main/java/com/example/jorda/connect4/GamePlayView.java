@@ -81,12 +81,8 @@ public class GamePlayView extends RelativeLayout {
     }
 
     public void dropDisc(int row, int col, int resource) {
-        Log.wtf("dropDisc",row+" : "+col);
-        int row1 = row-1;
-        int col2 = col;
-        Log.wtf("dropDisc 2 ",row1+" : "+col2);
-        final ImageView cell = mCells[row1][col2];
-        float move = -(cell.getHeight() * row1 + cell.getHeight() + 15);
+        final ImageView cell = mCells[row][col];
+        float move = -(cell.getHeight() * row + cell.getHeight() + 15);
         cell.setY(move);
         cell.setImageResource(resource);
         cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();

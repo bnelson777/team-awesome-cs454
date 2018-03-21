@@ -38,7 +38,7 @@ public class GamePlayController implements View.OnClickListener {
     }
 
     private void initialize(){
-        mGamePlay = new GamePlayModel(row1, column1, Num_rounds);
+        mGamePlay = new GamePlayModel( column1, row1, Num_rounds);
         // Get player types and colors from menu
         int p1_piece, p1_win_piece, p1_difficulty;
         int p2_piece, p2_win_piece, p2_difficulty;

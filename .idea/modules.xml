@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/team-awesome-cs454.iml" filepath="$PROJECT_DIR$/.idea/team-awesome-cs454.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-awesome-cs454.iml" filepath="$PROJECT_DIR$/team-awesome-cs454.iml" />
+      <module fileurl="file://C:\apocrypha\software\installed\cygwin64\home\jordan\tmp\team-awesome-cs454\.idea\team-awesome-cs454.iml" filepath="C:\apocrypha\software\installed\cygwin64\home\jordan\tmp\team-awesome-cs454\.idea\team-awesome-cs454.iml" />
     </modules>
   </component>
 </project>
