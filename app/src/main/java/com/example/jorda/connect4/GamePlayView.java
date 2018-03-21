@@ -1,9 +1,9 @@
 package com.example.jorda.connect4;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
@@ -82,10 +82,17 @@ public class GamePlayView extends RelativeLayout {
 
     public void dropDisc(int row, int col, int resource) {
         final ImageView cell = mCells[row][col];
-        float move = -(cell.getHeight() * row + cell.getHeight() + 15);
-        cell.setY(move);
-        cell.setImageResource(resource);
-        cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
+        final float move = -(cell.getHeight() * row + cell.getHeight() + 15);
+        final int res = resource;
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                cell.setY(move);
+                cell.setImageResource(res);
+                cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
+            }    }, 500);
+
     }
 
     public float getCellWidth() {
