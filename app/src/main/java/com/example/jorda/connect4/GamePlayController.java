@@ -1,6 +1,7 @@
 package com.example.jorda.connect4;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -123,10 +124,16 @@ public class GamePlayController implements View.OnClickListener {
             return; // Invalid move
         //Log.wtf("doMove", ""+mGamePlay.getCurrentPlayer() );
 
-        Log.wtf("Controller", "highlighting "+mGamePlay.getCurrentPlayer());
+        //Log.wtf("Controller", "highlighting "+mGamePlay.getCurrentPlayer());
         mPlayView.highlightPlayer(mGamePlay.getCurrentPlayer() ? 1 : 2);
         mPlayView.unhighlightPlayer(mGamePlay.getCurrentPlayer() ? 2 : 1);
         mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
+        ((TextView) mPlayView.findViewById(R.id.player1_name)).setText(player1_name);
+        //Log.wtf("controller:","player1name: "+R.id.player1_name);
+        ((TextView) mPlayView.findViewById(R.id.player1_score)).setText(Integer.toString(mGamePlay.getPlayer1_score()));
+        ((TextView) mPlayView.findViewById(R.id.player2_name)).setText(player2.getName());
+        //Log.wtf("controller:","player2name: "+R.id.player2_name);
+        ((TextView) mPlayView.findViewById(R.id.player2_score)).setText(Integer.toString(mGamePlay.getPlayer2_score()));
 
         if (mGamePlay.stalemate()) {
             mPlayView.winMessage("Stalemate!");
@@ -144,6 +151,7 @@ public class GamePlayController implements View.OnClickListener {
             if (mGamePlay.minWon())
                 mPlayView.winMessage("Player 2 wins!");
 
+            /*
             final Handler handler = new Handler(); //added by soyoung
 
             handler.postDelayed(new Runnable() {
@@ -155,6 +163,7 @@ public class GamePlayController implements View.OnClickListener {
                     initialize();
                 }
             }, 3000);
+            */
 
             return; // don't execute ai move if game has ended
         }
@@ -179,14 +188,37 @@ public class GamePlayController implements View.OnClickListener {
         Log.wtf("game controller","onClick");
 
         if (mGamePlay.maxWon() || mGamePlay.minWon() || mGamePlay.stalemate()) {
+            // Game is over. Save score if this was the last game in the round,
+            // start another game if not.
 
+            Log.wtf("GamePlayController","current: "+mGamePlay.getCurrent_round()+" total: "+mGamePlay.getCurrent_round());
+            if (mGamePlay.getCurrent_round() == mGamePlay.getTotal_rounds())
+            {
+                // Save score
+                //scoreboard.addScore(player1, score);
+
+
+                // Start home screen activity. How do we kill this activity?
+                /*
+                Intent intent = new Intent(mContext, HomeScreenActivity.class);
+                mContext.startActivity(intent);
+                */
+                ((GamePlayActivity) mContext).finish();
+            } else {
+                // start another game
+
+                // Reset model and view
+                mGamePlay.newRound();
+                Log.wtf("controller","calling initialize");
+                Log.wtf("controller", "new round is: "+mGamePlay.getCurrent_round());
+                mPlayView.reset();
+                //mPlayView.initialize(this, mMenu.getBoard_column(), mMenu.getBoard_row(), p1_piece, p1_win_piece, p2_piece, p2_win_piece);
+                mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
+            }
         }
 
         // if human, get column they clicked and playa  move there
-
         int column = (int)v.getX() / (int) mPlayView.getCellWidth();
-        Log.wtf("getCellWidth", mPlayView.getCellWidth()+" ");
-        Log.wtf("column", column+" ");
         doMove(column);
     }
 }

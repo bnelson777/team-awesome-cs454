@@ -27,10 +27,19 @@ public class GamePlayModel {
     public boolean placeMove(int column) {
         if (mBoard.makeMove(column, currentPlayer) < 0)
             return false;
+        if (mBoard.maxWon)
+            player1_score++;
+        if (mBoard.minWon)
+            player2_score++;
         currentPlayer = !currentPlayer;
         return true;
     }
 
+    public void newRound()
+    {
+        current_round++;
+        mBoard.reset();
+    }
     public int tops(int column) {
         return mBoard.getTop(column);
     }
@@ -53,10 +62,7 @@ public class GamePlayModel {
         return player2_score;
     }
 
-    public boolean maxWon()
-    {
-        return mBoard.maxWon;
-    }
+    public boolean maxWon() { return mBoard.maxWon;}
     public boolean minWon()
     {
         return mBoard.minWon;
