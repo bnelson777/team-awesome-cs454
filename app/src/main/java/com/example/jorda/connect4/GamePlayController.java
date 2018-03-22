@@ -6,7 +6,10 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;import android.view.ViewGroup;import android.widget.ImageView;
+import android.widget.TextView;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Created by school on 2/28/2018.
@@ -23,6 +26,7 @@ public class GamePlayController implements View.OnClickListener {
     Player player1;
     Player player2;
     private String player1_name;
+    private String player2_name="Player2";
     int row1;
     int column1;
     int Num_rounds;
@@ -46,7 +50,7 @@ public class GamePlayController implements View.OnClickListener {
 
         p1_piece = (mMenu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_white : R.drawable.player_piece_black);
-        Log.wtf("controller","Came in!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //Log.wtf("controller","Came in!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         p1_win_piece = mMenu.getPlayer1_color().equals("White") ?
                 R.drawable.player_piece_win_white : R.drawable.player_piece_win_black;
@@ -73,6 +77,7 @@ public class GamePlayController implements View.OnClickListener {
             waitForAi = false;
         } else if (mMenu.getPlayer1().equals("Robot overlord"))
         {
+            player1_name="AI";
             Log.wtf("game controller","setting p1 to AI");
             player1 = new AiPlayer(true,mGamePlay.getBoard(), p1_piece, p1_win_piece, "testname", p1_difficulty);
             waitForAi = true;
@@ -88,6 +93,7 @@ public class GamePlayController implements View.OnClickListener {
 
         } else if (mMenu.getPlayer2().equals("Robot overlord"))
         {
+            player2_name="AI";
             Log.wtf("game controller","setting p2 to AI");
             player2 = new AiPlayer(true, mGamePlay.getBoard(), p2_piece, p2_win_piece, "testname", p2_difficulty);
         }
@@ -106,11 +112,11 @@ public class GamePlayController implements View.OnClickListener {
 
 
         //String playerName1 = "John";
-        String playerName2 = "Player2";
+        //String playerName2 = "Player2";
         ((TextView) mPlayView.findViewById(R.id.player1_name)).setText(player1_name);
         //Log.wtf("controller:","player1name: "+R.id.player1_name);
         ((TextView) mPlayView.findViewById(R.id.player1_score)).setText(Integer.toString(mGamePlay.getPlayer1_score()));
-        ((TextView) mPlayView.findViewById(R.id.player2_name)).setText(playerName2);
+        ((TextView) mPlayView.findViewById(R.id.player2_name)).setText(player2_name);
         //Log.wtf("controller:","player2name: "+R.id.player2_name);
         ((TextView) mPlayView.findViewById(R.id.player2_score)).setText(Integer.toString(mGamePlay.getPlayer2_score()));
     }
@@ -164,6 +170,10 @@ public class GamePlayController implements View.OnClickListener {
                 }
             }, 3000);
             */
+            if (mGamePlay.getCurrent_round() == mGamePlay.getTotal_rounds()){
+                Toast.makeText(mContext,"Click the board to save your score!",Toast.LENGTH_LONG).show();
+            }
+
 
             return; // don't execute ai move if game has ended
         }
@@ -190,13 +200,37 @@ public class GamePlayController implements View.OnClickListener {
         if (mGamePlay.maxWon() || mGamePlay.minWon() || mGamePlay.stalemate()) {
             // Game is over. Save score if this was the last game in the round,
             // start another game if not.
+            //Toast.makeText(mContext,"Click the board to save your score!",Toast.LENGTH_LONG).show();
 
             Log.wtf("GamePlayController","current: "+mGamePlay.getCurrent_round()+" total: "+mGamePlay.getCurrent_round());
             if (mGamePlay.getCurrent_round() == mGamePlay.getTotal_rounds())
             {
                 // Save score
                 //scoreboard.addScore(player1, score);
+                //finish();
 
+                Intent i = new Intent(mContext, DemoGameActivity.class);
+                i.putExtra("player1", player1_name);
+                i.putExtra("player1_final", Integer.toString(mGamePlay.getPlayer1_score()));
+                i.putExtra("player2", player2_name);
+                i.putExtra("player2_final", Integer.toString(mGamePlay.getPlayer2_score()));
+                mContext.startActivity(i);
+
+               /* final Handler handler = new Handler(); //added by soyoung
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+                        //mPlayView.resetDiscs(row1, column1);
+                        Intent i = new Intent(mContext, DemoGameActivity.class);
+                        i.putExtra("player1", player1_name);
+                        i.putExtra("player1_final", mGamePlay.getPlayer1_score());
+                        i.putExtra("player2", player2.getName());
+                        i.putExtra("player2_final", mGamePlay.getPlayer2_score());
+                        mContext.startActivity(i);
+                    }
+                }, 3000);*/
 
                 // Start home screen activity. How do we kill this activity?
                 /*
@@ -211,6 +245,7 @@ public class GamePlayController implements View.OnClickListener {
                 mGamePlay.newRound();
                 Log.wtf("controller","calling initialize");
                 Log.wtf("controller", "new round is: "+mGamePlay.getCurrent_round());
+                Log.wtf("controller", ""+Integer.toString(mGamePlay.getPlayer1_score()));
                 mPlayView.reset();
                 //mPlayView.initialize(this, mMenu.getBoard_column(), mMenu.getBoard_row(), p1_piece, p1_win_piece, p2_piece, p2_win_piece);
                 mPlayView.showRounds(mGamePlay.getCurrent_round(), mGamePlay.getTotal_rounds());
