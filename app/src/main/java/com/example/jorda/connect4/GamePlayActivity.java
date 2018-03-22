@@ -19,27 +19,30 @@ public class GamePlayActivity extends AppCompatActivity {
     private View mGamePlayView;
     private MediaPlayer mp;
     private Button musicToggle;
+    String currentPlayer;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             Intent intent = getIntent();
+            currentPlayer = intent.getStringExtra("currentPlayer");
             MenuController menuController = (MenuController)intent.getSerializableExtra("MenuController");
 
             if (menuController.getBoard_size().equals("Small")) {
                 setContentView(R.layout.activity_gameplay_small);
+
                 GamePlayViewSmall boardView =  findViewById(R.id.gameViewSmall);
-                mController = new GamePlayController(this, boardView, menuController);
+                mController = new GamePlayController(this, boardView, menuController, currentPlayer);
 
             } else if (menuController.getBoard_size().equals("Medium")) {
                 setContentView(R.layout.activity_gameplay_medium);
                 GamePlayViewMedium boardView =  findViewById(R.id.gameViewMedium);
-                mController = new GamePlayController(this, boardView, menuController);
+                mController = new GamePlayController(this, boardView, menuController, currentPlayer);
 
             } else {
                 setContentView(R.layout.activity_gameplay_large);
                 GamePlayViewLarge boardView =  findViewById(R.id.gameViewLarge);
-                mController = new GamePlayController(this, boardView, menuController);
+                mController = new GamePlayController(this, boardView, menuController, currentPlayer);
             }
 
             musicToggle = findViewById(R.id.musicToggle);

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.jorda.connect4.R;
 
@@ -20,11 +21,21 @@ public class MenuActivity extends AppCompatActivity {
 
     final MenuController menuController = new MenuController();
     EditText round_count;
+    String currentPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        Intent i = getIntent();
+        currentPlayer = i.getStringExtra("player1");
+
+        TextView tv1 = (TextView)findViewById(R.id.testid2);
+        tv1.setText(currentPlayer);
+
+        TextView tv2 = (TextView)findViewById(R.id.testid4);
+        tv2.setText(currentPlayer+"'s Difficulty");
 
         Log.wtf("MenuActivity","onCreate beginning");
 
@@ -39,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
 
         final Spinner Player2_color = (Spinner) findViewById(R.id.color_selector_player_2);
         final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.player_colors, android.R.layout.simple_spinner_item);
+                R.array.player_colors2, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Player2_color.setAdapter(adapter2);
 
@@ -199,6 +210,7 @@ public class MenuActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, GamePlayActivity.class);
         intent.putExtra("MenuController", menuController);
+        intent.putExtra("currentPlayer", currentPlayer);
         startActivity(intent);
     }
 }

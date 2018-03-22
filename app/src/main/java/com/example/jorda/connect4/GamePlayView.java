@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
@@ -80,6 +81,12 @@ public class GamePlayView extends RelativeLayout {
         }
     }
 
+    public void reset()
+    {
+        Log.wtf("GamePlayView","cols: "+mCells[0].length+" "+mCells.length);
+        initialize(mListener, mCells[0].length, mCells.length, mPlayer1.piece, mPlayer1.winPiece, mPlayer2.piece, mPlayer2.winPiece);
+    }
+
     public void dropDisc(int row, int col, int resource) {
         final ImageView cell = mCells[row][col];
         final float move = -(cell.getHeight() * row + cell.getHeight() + 15);
@@ -93,6 +100,18 @@ public class GamePlayView extends RelativeLayout {
                 cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
             }    }, 500);
 
+    }
+
+    public void resetDiscs(int row, int col) {
+        for(int i=0; i<row; i++){
+            for(int j=0; j<col; j++){
+                final ImageView cell = mCells[i][j];
+                float move = -(cell.getHeight() * row + cell.getHeight() + 15);
+                cell.setY(move);
+                //cell.setImageResource(android.R.color.transparent);
+            }
+        }
+        //cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
     }
 
     public float getCellWidth() {

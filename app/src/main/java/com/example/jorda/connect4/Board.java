@@ -39,6 +39,7 @@ public class Board {
         minWon = false;
         winX = new int[4];
         winY = new int[4];
+        boardFull = false;
     }
 
     public Board(Board in) {
@@ -55,6 +56,18 @@ public class Board {
             this.grid[i] = in.grid[i].clone();
         this.winX = in.winX.clone();
         this.winY = in.winY.clone();
+    }
+
+    public void reset()
+    {
+        grid = new int[columns][rows];
+        tops = new int[columns];
+        heuristicScore = 0;
+        maxWon = false;
+        minWon = false;
+        winX = new int[4];
+        winY = new int[4];
+        boardFull = false;
     }
 
     public Board simulateMove(int column, boolean piece)
@@ -101,18 +114,12 @@ public class Board {
                      */
                     boolean tWon = true;
                     for (int i = 0; i < 4; i++) {
-                        if (rowDir == -1 && colDir == -1)
-                            Log.wtf("Board", "Checking at " + c + " " + r + colDir + " " + rowDir);
                         if (!(     r < rows && r >= 0 && c < columns && c >= 0
                                 && c + i * colDir < columns && c + i * colDir >= 0
                                 && r + i * rowDir < rows && r + i * rowDir >= 0
                                 && ((piece ? first_player : second_player)
                                         == grid[c + i * colDir][r + i * rowDir])))
                         {
-                            if (rowDir == -1 && colDir == -1) {
-                                Log.wtf("Board", "failed on " + c + " " + r);
-                                //Log.wtf("Board", "" + " " + rows + " " + columns + " " + piece + " " + grid[c+i*colDir][r+i*rowDir]);
-                            }
                             tWon = false;
                             /* Explanation of heuristic score:
                              * it is taken to be the total number of possible
