@@ -79,13 +79,13 @@ public class GamePlayController implements View.OnClickListener {
         {
             player1_name="AI";
             Log.wtf("game controller","setting p1 to AI");
-            player1 = new AiPlayer(true,mGamePlay.getBoard(), p1_piece, p1_win_piece, "testname", p1_difficulty);
+            player1 = new AiPlayer(true,mGamePlay.getBoard(), p1_piece, p1_win_piece, player1_name, p1_difficulty);
             waitForAi = true;
         }
         else { //local human
             Log.wtf("gpcont","human player");
             //Log.wtf("gp cont" ,""+p1_piece+" "+p1_win_piece+" "+R.drawable.player_piece_white+" "+R.drawable.player_piece_win_white);
-            player1 = new Player(true, p1_piece, p1_win_piece, "testname");
+            player1 = new Player(true, p1_piece, p1_win_piece, player1_name);
             waitForAi = false;
         }
 
@@ -95,10 +95,10 @@ public class GamePlayController implements View.OnClickListener {
         {
             player2_name="AI";
             Log.wtf("game controller","setting p2 to AI");
-            player2 = new AiPlayer(true, mGamePlay.getBoard(), p2_piece, p2_win_piece, "testname", p2_difficulty);
+            player2 = new AiPlayer(true, mGamePlay.getBoard(), p2_piece, p2_win_piece, player2_name, p2_difficulty);
         }
         else { // local human
-            player2 = new Player(true, p2_piece, p2_win_piece, "testname");
+            player2 = new Player(true, p2_piece, p2_win_piece, player2_name);
         }
 
         Log.wtf("game controller","checking for AI");
