@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnClear"
         android:layout_centerHorizontal="true"
-        android:text="GAME MENU" />
+        android:text="HOME" />
 
     <TextView
         android:id="@+id/textView"

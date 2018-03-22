@@ -200,8 +200,8 @@ public class HighScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = getIntent();
-                Intent intent = new Intent(HighScoreActivity.this, MenuActivity.class);
-                intent.putExtra("player1", main_player);
+                Intent intent = new Intent(HighScoreActivity.this, HomeScreenActivity.class);
+                //intent.putExtra("player1", main_player);
                 startActivity(intent);
                 finish();
             }

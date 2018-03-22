@@ -77,8 +77,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         highScores.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomeScreenActivity.this, DemoGameActivity.class);
+                Intent i = new Intent(HomeScreenActivity.this, HighScoreActivity.class);
                 i.putExtra("player1", player1.getName());
+                i.putExtra("main_player", player1.getName());
                 startActivity(i);
                 finish();
             }
