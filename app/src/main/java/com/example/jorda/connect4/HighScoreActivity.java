@@ -175,7 +175,7 @@ public class HighScoreActivity extends AppCompatActivity {
             }
         }
 
-        tv_score.setText("LAST GAME- " + currentPlayer + ": " + lastScore + "\n" +
+        tv_score.setText("\n\nLast game - " + currentPlayer + " : " + lastScore + "\n\n\n" +
                 "1. : " + p1 + ": " + best1 + "\n" +
                 "2. : " + p2 + ": " + best2 + "\n" +
                 "3. : " + p3 + ": " + best3 + "\n" +
@@ -188,7 +188,7 @@ public class HighScoreActivity extends AppCompatActivity {
                 SharedPreferences preferences = getSharedPreferences("PREFS", 0);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear().apply();
-                tv_score.setText("LAST GAME- " + currentPlayer + ": " + lastScore + "\n" +
+                tv_score.setText("\n\nLast game - " + currentPlayer + " : " + lastScore + "\n\n\n" +
                         "1. : - : 0\n" +
                         "2. : - : 0\n" +
                         "3. : - : 0\n" +

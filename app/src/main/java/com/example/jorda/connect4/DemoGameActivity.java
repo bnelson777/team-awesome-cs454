@@ -34,7 +34,7 @@ public class DemoGameActivity extends AppCompatActivity {
         final int highScore;
         final String highScorePlayer;
 
-        tv_score.setText((player1_name+" : " +player1_final+"\n"+player2_name+" : " +player2_final));
+        tv_score.setText(("FINAL SCORE\n\n"+player1_name+" : " +player1_final+"\n"+player2_name+" : " +player2_final));
 
         /*b_add.setOnClickListener(new View.OnClickListener() {
             @Override
